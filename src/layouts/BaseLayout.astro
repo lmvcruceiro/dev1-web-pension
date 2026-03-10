@@ -7,7 +7,7 @@ import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,20 +21,20 @@ import '../styles/global.css';
     />
   </head>
 
-  <body class="bg-stone-50 text-stone-800 font-lato">
-    <header class="w-full bg-stone-900 px-6 py-4 text-stone-100">
-      <nav class="mx-auto flex max-w-5xl items-center justify-between">
+  <body class="m-0 overflow-x-hidden bg-stone-50 text-stone-800 font-lato">
+    <header class="w-full bg-stone-900 px-4 py-4 text-stone-100 sm:px-6">
+      <nav class="mx-auto flex max-w-5xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
         <a
           href="/"
-          class="font-playfair text-2xl font-bold tracking-wide text-amber-400 transition-colors hover:text-amber-300"
+          class="font-playfair text-xl font-bold tracking-wide text-amber-400 transition-colors hover:text-amber-300 sm:text-2xl"
         >
           Pensión Agro da Porta
         </a>
-        <ul class="flex gap-8 text-sm font-light uppercase tracking-widest">
-          <li><a href="/" class="transition-colors hover:text-amber-400">Home</a></li>
-          <li><a href="/rooms" class="hover:text-amber-400 transition-colors">Rooms</a></li>
-          <li><a href="/services" class="transition-colors hover:text-amber-400">Services</a></li>
-          <li><a href="/contact" class="transition-colors hover:text-amber-400">Contact</a></li>
+        <ul class="flex w-full flex-wrap gap-x-5 gap-y-2 text-xs font-light uppercase tracking-[0.08em] sm:w-auto sm:gap-8 sm:text-sm sm:tracking-widest">
+          <li><a href="/" class="block py-1 transition-colors hover:text-amber-400">Home</a></li>
+          <li><a href="/rooms" class="block py-1 transition-colors hover:text-amber-400">Rooms</a></li>
+          <li><a href="/services" class="block py-1 transition-colors hover:text-amber-400">Services</a></li>
+          <li><a href="/contact" class="block py-1 transition-colors hover:text-amber-400">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -43,25 +43,25 @@ import '../styles/global.css';
       <slot />
     </main>
 
-    <footer class="mt-20 bg-stone-900 px-6 py-10 text-stone-400">
-      <div class="mx-auto flex max-w-5xl flex-col justify-between gap-6 text-sm md:flex-row">
+    <footer class="mt-16 bg-stone-900 px-4 py-10 text-stone-400 sm:mt-20 sm:px-6">
+      <div class="mx-auto flex max-w-5xl flex-col justify-between gap-8 text-sm md:flex-row">
         <div>
           <p class="mb-2 text-lg font-playfair font-semibold text-amber-400">Pensión Agro da Porta</p>
           <p>Camino de Santiago</p>
           <p>Espana</p>
         </div>
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-stone-300">Contact</p>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-300">Contact</p>
           <p>info@agrodaporta.com</p>
           <p>+34 000 000 000</p>
         </div>
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-stone-300">Follow Us</p>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-300">Follow Us</p>
           <p>Instagram</p>
           <p>Facebook</p>
         </div>
       </div>
-      <p class="mt-8 text-center text-xs text-stone-600">(c) 2025 Pensión Agro da Porta. All rights reserved.</p>
+      <p class="mt-8 text-center text-[11px] text-stone-600 sm:text-xs">(c) 2025 Pensión Agro da Porta. All rights reserved.</p>
     </footer>
   </body>
 </html>

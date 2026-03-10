@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Home" description="Agro da Porta - A warm and welcoming albergue on the Camino de Santiago">
 
   <!-- HERO SECTION -->
-  <section class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-stone-900">
+  <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-stone-900 md:min-h-[90vh]">
     <!-- Background gradient simulating a landscape -->
     <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-amber-950 to-stone-800 opacity-90"></div>
 
@@ -15,39 +15,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <!-- Hero Content -->
-    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <p class="text-amber-400 uppercase tracking-[0.4em] text-sm font-lato font-light mb-6 animate-fade-in">
+    <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <p class="mb-5 text-xs font-lato font-light uppercase tracking-[0.25em] text-amber-400 sm:mb-6 sm:text-sm sm:tracking-[0.4em] animate-fade-in">
         Camino de Santiago
       </p>
-      <h1 class="font-playfair text-6xl md:text-8xl font-bold text-stone-50 leading-tight mb-6">
+      <h1 class="mb-5 font-playfair text-4xl leading-tight font-bold text-stone-50 sm:text-6xl md:mb-6 md:text-8xl">
         Pensión<br /><span class="text-amber-400 italic">Agro da Porta</span>
       </h1>
-      <p class="text-stone-300 font-lato font-light text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+      <p class="mx-auto mb-8 max-w-xl font-lato text-base leading-relaxed font-light text-stone-300 sm:text-lg md:mb-10 md:text-xl">
         A warm refuge for pilgrims. Rest, connect, and continue your journey renewed.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors">
+      <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+        <a href="/contact" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
           Book Your Stay
         </a>
-        <a href="/services" class="border border-stone-400 text-stone-200 font-lato font-light uppercase tracking-widest text-sm px-8 py-4 hover:border-amber-400 hover:text-amber-400 transition-colors">
+        <a href="/services" class="w-full border border-stone-400 px-8 py-4 text-center font-lato text-sm font-light uppercase tracking-[0.14em] text-stone-200 transition-colors hover:border-amber-400 hover:text-amber-400 sm:w-auto sm:tracking-widest">
           Our Services
         </a>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-stone-500">
-      <span class="text-xs uppercase tracking-widest font-lato">Scroll</span>
-      <div class="w-px h-12 bg-gradient-to-b from-stone-500 to-transparent"></div>
+    <div class="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-stone-500 md:bottom-8">
+      <span class="font-lato text-[11px] uppercase tracking-[0.14em] sm:text-xs sm:tracking-widest">Scroll</span>
+      <div class="h-10 w-px bg-gradient-to-b from-stone-500 to-transparent sm:h-12"></div>
     </div>
   </section>
 
   <!-- WHY US SECTION -->
-  <section class="py-24 px-6 bg-stone-50">
+  <section class="bg-stone-50 px-4 py-16 sm:px-6 sm:py-24">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <p class="text-amber-600 uppercase tracking-[0.3em] text-xs font-lato mb-3">Why Pilgrims Choose Us</p>
-        <h2 class="font-playfair text-4xl text-stone-800">A Home Along the Way</h2>
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-600 sm:tracking-[0.3em]">Why Pilgrims Choose Us</p>
+        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">A Home Along the Way</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -91,7 +91,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- QUICK INFO STRIP -->
-  <section class="bg-stone-900 text-stone-100 py-10 px-6">
+  <section class="bg-stone-900 px-4 py-10 text-stone-100 sm:px-6">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div>
         <p class="text-amber-400 font-playfair text-3xl font-bold">€15</p>
@@ -109,11 +109,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="py-24 px-6 bg-amber-50">
+  <section class="bg-amber-50 px-4 py-16 sm:px-6 sm:py-24">
     <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <p class="text-amber-600 uppercase tracking-[0.3em] text-xs font-lato mb-3">Pilgrim Voices</p>
-        <h2 class="font-playfair text-4xl text-stone-800">What They Say</h2>
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-600 sm:tracking-[0.3em]">Pilgrim Voices</p>
+        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">What They Say</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -148,11 +148,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- FINAL CTA -->
-  <section class="py-24 px-6 bg-stone-800 text-center">
+  <section class="bg-stone-800 px-4 py-16 text-center sm:px-6 sm:py-24">
     <div class="max-w-2xl mx-auto">
-      <h2 class="font-playfair text-4xl text-stone-50 mb-4">Ready to Walk?</h2>
-      <p class="font-lato text-stone-400 font-light text-lg mb-10">Your bed is waiting. Reach out and we'll take care of the rest.</p>
-      <a href="/contact" class="bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-10 py-4 hover:bg-amber-300 transition-colors">
+      <h2 class="mb-4 font-playfair text-3xl text-stone-50 sm:text-4xl">Ready to Walk?</h2>
+      <p class="mb-8 font-lato text-base font-light text-stone-400 sm:mb-10 sm:text-lg">Your bed is waiting. Reach out and we'll take care of the rest.</p>
+      <a href="/contact" class="inline-block w-full bg-amber-400 px-10 py-4 font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
         Get in Touch
       </a>
     </div>
