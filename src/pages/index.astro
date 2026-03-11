@@ -6,8 +6,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <!-- HERO SECTION -->
   <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-stone-900 md:min-h-[90vh]">
-    <!-- Background gradient simulating a landscape -->
-    <div class="absolute inset-0 bg-gradient-to-br from-stone-900 via-amber-950 to-stone-800 opacity-90"></div>
+    <!-- Background image -->
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/images/caminho.webp');"
+    ></div>
+
+    <!-- Dark overlay for text contrast -->
+    <div class="absolute inset-0 bg-gradient-to-br from-stone-950/80 via-stone-900/65 to-amber-950/70"></div>
 
     <!-- Decorative diagonal line -->
     <div class="absolute inset-0 overflow-hidden">
