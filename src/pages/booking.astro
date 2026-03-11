@@ -50,39 +50,124 @@ const rooms = [
     </p>
   </section>
 
-  <!-- DATE SELECTOR -->
+  <!-- BOOKING INQUIRY -->
   <section class="bg-stone-50 px-4 py-12 sm:px-6">
     <div class="max-w-3xl mx-auto">
       <div class="bg-white border border-stone-200 p-8">
-        <h2 class="font-playfair text-2xl text-stone-800 mb-6 text-center">Select Your Dates</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <!-- Check-in -->
-          <div>
-            <label class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
-              Check-in Date
-            </label>
-            <input
-              type="date"
-              id="checkin"
-              class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
-            />
+        <h2 class="font-playfair text-2xl text-stone-800 mb-2 text-center">Check Availability</h2>
+        <p class="text-center font-lato text-sm text-stone-500 mb-6">
+          For now, this sends an inquiry. It is structured to connect to Beds24 or Redforts later.
+        </p>
+
+        <form id="booking-inquiry-form" class="space-y-5" action="/contact" method="get" data-booking-adapter="pending">
+          <input type="hidden" name="source" value="booking-page" />
+          <input type="hidden" name="integration_target" value="beds24_or_redforts" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="checkin" class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+                Check-in Date
+              </label>
+              <input
+                type="date"
+                id="checkin"
+                name="checkin"
+                required
+                autocomplete="off"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+              />
+            </div>
+
+            <div>
+              <label for="checkout" class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+                Check-out Date
+              </label>
+              <input
+                type="date"
+                id="checkout"
+                name="checkout"
+                required
+                autocomplete="off"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+              />
+            </div>
           </div>
-          <!-- Check-out -->
-          <div>
-            <label class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
-              Check-out Date
-            </label>
-            <input
-              type="date"
-              id="checkout"
-              class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
-            />
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div>
+              <label for="adults" class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+                Adults
+              </label>
+              <select
+                id="adults"
+                name="adults"
+                required
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+              >
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="children" class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+                Children
+              </label>
+              <select
+                id="children"
+                name="children"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+              >
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="room_preference" class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+                Room Preference
+              </label>
+              <select
+                id="room_preference"
+                name="room_preference"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+              >
+                <option value="any" selected>No preference</option>
+                <option value="cama-de-matrimonio">Cama de Matrimonio</option>
+                <option value="habitacion-accesible">Habitación Accesible</option>
+                <option value="habitacion-doble">Habitación Doble</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <!-- Nights summary -->
-        <div id="nights-summary" class="mt-4 text-center font-lato text-sm text-stone-500 hidden">
-          <span id="nights-text"></span>
-        </div>
+
+          <label class="sr-only" for="company">Do not fill this field</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+            class="hidden"
+            aria-hidden="true"
+          />
+
+          <div id="nights-summary" class="text-center font-lato text-sm text-stone-500 hidden">
+            <span id="nights-text"></span>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="font-lato text-xs text-stone-500">By continuing, you agree to be contacted about your booking inquiry.</p>
+            <button
+              type="submit"
+              class="bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-3 hover:bg-amber-300 transition-colors"
+            >
+              Send Availability Request
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -125,7 +210,9 @@ const rooms = [
                   <span class="font-lato text-stone-400 text-sm"> / night</span>
                   <p id={`total-${room.id}`} class="font-lato text-xs text-amber-600 mt-1 hidden"></p>
                 </div>
-                
+                <a
+                  data-request-link
+                  data-room-name={room.name}
                   href="/contact"
                   class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors text-center"
                 >
@@ -186,18 +273,35 @@ const rooms = [
 </BaseLayout>
 
 <script>
-  const checkin = document.getElementById('checkin') as HTMLInputElement;
-  const checkout = document.getElementById('checkout') as HTMLInputElement;
+  const checkin = document.getElementById('checkin') as HTMLInputElement | null;
+  const checkout = document.getElementById('checkout') as HTMLInputElement | null;
   const nightsSummary = document.getElementById('nights-summary');
   const nightsText = document.getElementById('nights-text');
+  const requestLinks = document.querySelectorAll<HTMLAnchorElement>('[data-request-link]');
 
-  // Set minimum date to today
-  const today = new Date().toISOString().split('T')[0];
-  checkin.min = today;
-  checkout.min = today;
+  function updateRoomLinks() {
+    requestLinks.forEach((link) => {
+      const room = link.dataset.roomName ?? '';
+      const params = new URLSearchParams({
+        source: 'booking-page',
+        room,
+      });
+
+      if (checkin?.value) params.set('checkin', checkin.value);
+      if (checkout?.value) params.set('checkout', checkout.value);
+
+      link.href = `/contact?${params.toString()}`;
+    });
+  }
 
   function calculateNights() {
-    if (!checkin.value || !checkout.value) return;
+    if (!checkin || !checkout) return;
+
+    if (!checkin.value || !checkout.value) {
+      nightsSummary?.classList.add('hidden');
+      updateRoomLinks();
+      return;
+    }
 
     const inDate = new Date(checkin.value);
     const outDate = new Date(checkout.value);
@@ -205,6 +309,7 @@ const rooms = [
 
     if (nights <= 0) {
       nightsSummary?.classList.add('hidden');
+      updateRoomLinks();
       return;
     }
 
@@ -221,12 +326,26 @@ const rooms = [
         totalEl.classList.remove('hidden');
       }
     });
+
+    updateRoomLinks();
   }
 
-  checkin.addEventListener('change', () => {
-    checkout.min = checkin.value;
-    calculateNights();
-  });
+  if (checkin && checkout) {
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    checkin.min = today;
+    checkout.min = today;
 
-  checkout.addEventListener('change', calculateNights);
+    checkin.addEventListener('change', () => {
+      checkout.min = checkin.value || today;
+      if (checkout.value && checkout.value < checkin.value) {
+        checkout.value = '';
+      }
+      calculateNights();
+    });
+
+    checkout.addEventListener('change', calculateNights);
+  }
+
+  updateRoomLinks();
 </script>
