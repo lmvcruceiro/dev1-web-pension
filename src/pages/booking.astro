@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const rooms = [
+  {
+    id: 1,
+    name: "Cama de Matrimonio",
+    description: "A cosy and intimate room with a 150cm double bed. Perfect for couples walking the Camino together.",
+    price: 55,
+    capacity: 2,
+    tags: ["150cm bed", "Private room", "Natural light", "Storage"],
+    icon: "🛏️"
+  },
+  {
+    id: 2,
+    name: "Habitación Accesible",
+    description: "Fully adapted room for pilgrims with reduced mobility. Wide doorways, grab rails and roll-in shower.",
+    price: 55,
+    capacity: 2,
+    tags: ["150cm bed", "Wheelchair access", "Grab rails", "Roll-in shower"],
+    icon: "♿"
+  },
+  {
+    id: 3,
+    name: "Habitación Doble",
+    description: "Spacious room with two 90cm single beds. Ideal for friends or two pilgrims sharing.",
+    price: 45,
+    capacity: 2,
+    tags: ["2 × 90cm beds", "Private room", "Spacious", "Storage"],
+    icon: "🛏️🛏️"
+  }
+];
+---
+
+<BaseLayout title="Book Your Stay" description="Book your room at Pensión Agro da Porta on the Camino de Santiago">
+
+  <!-- PAGE HEADER -->
+  <section class="bg-stone-900 py-24 px-6 text-center">
+    <p class="text-amber-400 uppercase tracking-[0.4em] text-xs font-lato mb-4">Reserve Your Room</p>
+    <h1 class="font-playfair text-5xl md:text-6xl text-stone-50 font-bold mb-6">Book Your Stay</h1>
+    <p class="text-stone-400 font-lato font-light text-lg max-w-xl mx-auto leading-relaxed">
+      Best price guaranteed when you book directly with us.
+    </p>
+  </section>
+
+  <!-- COMING SOON BANNER -->
+  <section class="bg-amber-400 px-6 py-5 text-center">
+    <p class="font-lato text-stone-900 font-bold text-sm uppercase tracking-widest">
+      🌟 Opening Spring 2026 — Online booking will be available soon
+    </p>
+  </section>
+
+  <!-- DATE SELECTOR -->
+  <section class="bg-stone-50 px-4 py-12 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white border border-stone-200 p-8">
+        <h2 class="font-playfair text-2xl text-stone-800 mb-6 text-center">Select Your Dates</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Check-in -->
+          <div>
+            <label class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+              Check-in Date
+            </label>
+            <input
+              type="date"
+              id="checkin"
+              class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+            />
+          </div>
+          <!-- Check-out -->
+          <div>
+            <label class="block font-lato text-xs uppercase tracking-widest text-stone-500 mb-2">
+              Check-out Date
+            </label>
+            <input
+              type="date"
+              id="checkout"
+              class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:outline-none focus:border-amber-400"
+            />
+          </div>
+        </div>
+        <!-- Nights summary -->
+        <div id="nights-summary" class="mt-4 text-center font-lato text-sm text-stone-500 hidden">
+          <span id="nights-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section class="bg-stone-50 px-4 pb-16 sm:px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-playfair text-3xl text-stone-800 mb-10 text-center">Choose Your Room</h2>
+
+      <div class="flex flex-col gap-8">
+        {rooms.map((room) => (
+          <div class="bg-white border border-stone-200 grid grid-cols-1 md:grid-cols-3 overflow-hidden">
+
+            <!-- Placeholder image -->
+            <div class="bg-stone-100 h-56 md:h-auto flex items-center justify-center border-b md:border-b-0 md:border-r border-stone-200">
+              <div class="text-center">
+                <p class="text-4xl mb-2">{room.icon}</p>
+                <p class="text-stone-400 font-lato text-xs uppercase tracking-widest">Photo coming soon</p>
+              </div>
+            </div>
+
+            <!-- Room info -->
+            <div class="p-6 md:p-8 md:col-span-2 flex flex-col justify-between">
+              <div>
+                <h3 class="font-playfair text-2xl text-stone-800 mb-2">{room.name}</h3>
+                <p class="font-lato text-stone-500 font-light leading-relaxed mb-4">{room.description}</p>
+                <ul class="flex flex-wrap gap-2 mb-6">
+                  {room.tags.map((tag) => (
+                    <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Price + CTA -->
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-4 border-t border-stone-100">
+                <div>
+                  <span class="font-playfair text-3xl text-stone-800 font-bold">€{room.price}</span>
+                  <span class="font-lato text-stone-400 text-sm"> / night</span>
+                  <p id={`total-${room.id}`} class="font-lato text-xs text-amber-600 mt-1 hidden"></p>
+                </div>
+                
+                  href="/contact"
+                  class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors text-center"
+                >
+                  Request This Room
+                </a>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="bg-stone-900 px-4 py-16 sm:px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="text-amber-400 uppercase tracking-[0.3em] text-xs font-lato mb-3">Be The First to Know</p>
+      <h2 class="font-playfair text-3xl text-stone-50 mb-4">Opening Spring 2026</h2>
+      <p class="font-lato text-stone-400 font-light mb-8 leading-relaxed">
+        Leave your email and we'll notify you the moment online booking opens. Early subscribers get an exclusive welcome offer.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <input
+          type="email"
+          placeholder="your@email.com"
+          class="w-full sm:w-auto flex-1 max-w-sm border border-stone-600 bg-stone-800 px-4 py-3 font-lato text-stone-100 placeholder-stone-500 focus:outline-none focus:border-amber-400"
+        />
+        <button class="bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-3 hover:bg-amber-300 transition-colors">
+          Notify Me
+        </button>
+      </div>
+      <p class="text-stone-600 text-xs font-lato mt-4">No spam. Just one email when booking opens.</p>
+    </div>
+  </section>
+
+  <!-- BEST PRICE GUARANTEE -->
+  <section class="bg-amber-50 px-4 py-12 sm:px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      <div>
+        <p class="text-2xl mb-3">💰</p>
+        <h3 class="font-playfair text-lg text-stone-800 mb-2">Best Price Guaranteed</h3>
+        <p class="font-lato text-sm text-stone-500 font-light">Booking directly with us is always cheaper than any other platform.</p>
+      </div>
+      <div>
+        <p class="text-2xl mb-3">✉️</p>
+        <h3 class="font-playfair text-lg text-stone-800 mb-2">Instant Confirmation</h3>
+        <p class="font-lato text-sm text-stone-500 font-light">You'll receive a confirmation email immediately after booking.</p>
+      </div>
+      <div>
+        <p class="text-2xl mb-3">🤝</p>
+        <h3 class="font-playfair text-lg text-stone-800 mb-2">Free Cancellation</h3>
+        <p class="font-lato text-sm text-stone-500 font-light">Cancel up to 48 hours before arrival at no charge.</p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const checkin = document.getElementById('checkin') as HTMLInputElement;
+  const checkout = document.getElementById('checkout') as HTMLInputElement;
+  const nightsSummary = document.getElementById('nights-summary');
+  const nightsText = document.getElementById('nights-text');
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  checkin.min = today;
+  checkout.min = today;
+
+  function calculateNights() {
+    if (!checkin.value || !checkout.value) return;
+
+    const inDate = new Date(checkin.value);
+    const outDate = new Date(checkout.value);
+    const nights = Math.round((outDate.getTime() - inDate.getTime()) / (1000 * 60 * 60 * 24));
+
+    if (nights <= 0) {
+      nightsSummary?.classList.add('hidden');
+      return;
+    }
+
+    // Show nights summary
+    nightsSummary?.classList.remove('hidden');
+    if (nightsText) nightsText.textContent = `${nights} night${nights > 1 ? 's' : ''} selected`;
+
+    // Update totals for each room
+    const prices = [55, 55, 45];
+    prices.forEach((price, index) => {
+      const totalEl = document.getElementById(`total-${index + 1}`);
+      if (totalEl) {
+        totalEl.textContent = `€${price * nights} total for ${nights} night${nights > 1 ? 's' : ''}`;
+        totalEl.classList.remove('hidden');
+      }
+    });
+  }
+
+  checkin.addEventListener('change', () => {
+    checkout.min = checkin.value;
+    calculateNights();
+  });
+
+  checkout.addEventListener('change', calculateNights);
+</script>
