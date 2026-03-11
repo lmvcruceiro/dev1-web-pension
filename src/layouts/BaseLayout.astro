@@ -4,6 +4,12 @@ const {
   description = "A warm albergue on the Camino de Santiago",
 } = Astro.props;
 import '../styles/global.css';
+
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const isActive = (href) => {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
 ---
 
 <!doctype html>
@@ -31,11 +37,51 @@ import '../styles/global.css';
           Pensión Agro da Porta
         </a>
         <ul class="flex w-full flex-wrap gap-x-5 gap-y-2 text-xs font-light uppercase tracking-[0.08em] sm:w-auto sm:gap-8 sm:text-sm sm:tracking-widest">
-          <li><a href="/" class="block py-1 transition-colors hover:text-amber-400">Home</a></li>
-          <li><a href="/rooms" class="block py-1 transition-colors hover:text-amber-400">Rooms</a></li>
-          <li><a href="/services" class="block py-1 transition-colors hover:text-amber-400">Services</a></li>
-          <li><a href="/booking" class="block py-1 transition-colors hover:text-amber-400">Book</a></li>
-          <li><a href="/contact" class="block py-1 transition-colors hover:text-amber-400">Contact</a></li>
+          <li>
+            <a
+              href="/"
+              aria-current={isActive('/') ? 'page' : undefined}
+              class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/rooms"
+              aria-current={isActive('/rooms') ? 'page' : undefined}
+              class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/rooms') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
+            >
+              Rooms
+            </a>
+          </li>
+          <li>
+            <a
+              href="/services"
+              aria-current={isActive('/services') ? 'page' : undefined}
+              class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/services') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
+            >
+              Services
+            </a>
+          </li>
+          <li>
+            <a
+              href="/booking"
+              aria-current={isActive('/booking') ? 'page' : undefined}
+              class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/booking') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
+            >
+              Book
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              aria-current={isActive('/contact') ? 'page' : undefined}
+              class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/contact') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

@@ -59,7 +59,7 @@ const rooms = [
           For now, this sends an inquiry. It is structured to connect to Beds24 or Redforts later.
         </p>
 
-        <form id="booking-inquiry-form" class="space-y-5" action="/contact" method="get" data-booking-adapter="pending">
+        <form id="booking-inquiry-form" class="space-y-5" action="/contact#contact-form" method="get" data-booking-adapter="pending">
           <input type="hidden" name="source" value="booking-page" />
           <input type="hidden" name="integration_target" value="beds24_or_redforts" />
 
@@ -213,7 +213,7 @@ const rooms = [
                 <a
                   data-request-link
                   data-room-name={room.name}
-                  href="/contact"
+                  href="/contact#contact-form"
                   class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors text-center"
                 >
                   Request This Room
@@ -290,7 +290,7 @@ const rooms = [
       if (checkin?.value) params.set('checkin', checkin.value);
       if (checkout?.value) params.set('checkout', checkout.value);
 
-      link.href = `/contact?${params.toString()}`;
+      link.href = `/contact?${params.toString()}#contact-form`;
     });
   }
 
