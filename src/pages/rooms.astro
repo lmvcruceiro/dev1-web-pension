@@ -1,5 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const doubleRoomImagePaths = [
+  '/images/double_room/01_double_room.webp',
+  '/images/double_room/02_inside_out_perspective.webp',
+];
+
+const twinRoomImagePaths = [
+  '/images/twin_room/01_twin_bed.webp',
+  '/images/twin_room/02_twin_bed_inside_out_perspective.webp',
+  '/images/twin_room/03_bathroom.webp',
+];
 ---
 
 <BaseLayout title="Our Rooms" description="Discover the rooms at Pensión Agro da Porta on the Camino de Santiago">
@@ -19,14 +30,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <!-- ROOM 1: Cama de Matrimonio -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <!-- Placeholder Image -->
-        <div class="bg-stone-200 h-72 flex items-center justify-center border border-stone-300">
-          <span class="text-stone-400 font-lato text-sm uppercase tracking-widest">Photo coming soon</span>
-        </div>
+        <!-- Room Image -->
+        {doubleRoomImagePaths.length > 0 ? (
+          <div
+            class="relative h-72 overflow-hidden border border-stone-300"
+            data-room-carousel
+            data-images={JSON.stringify(doubleRoomImagePaths)}
+          >
+            <img
+              src={doubleRoomImagePaths[0]}
+              alt="Double Room at Pensión Agro da Porta"
+              class="h-full w-full object-cover"
+              data-carousel-image
+              loading="lazy"
+            />
+
+            <button
+              type="button"
+              class="absolute left-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+              data-carousel-prev
+              aria-label="Previous Double Room image"
+            >
+              ←
+            </button>
+
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+              data-carousel-next
+              aria-label="Next Double Room image"
+            >
+              →
+            </button>
+
+            <p class="absolute bottom-3 right-3 bg-stone-900/70 px-2 py-1 font-lato text-xs text-stone-50">
+              <span data-carousel-index>1</span>/{doubleRoomImagePaths.length}
+            </p>
+          </div>
+        ) : (
+          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+        )}
         <!-- Info -->
         <div>
-          <p class="text-amber-600 uppercase tracking-[0.3em] text-xs font-lato mb-2">Room 01</p>
-          <h2 class="font-playfair text-3xl text-stone-800 mb-4">Cama de Matrimonio</h2>
+          <h2 class="font-playfair text-3xl text-stone-800 mb-4">Double Room</h2>
           <p class="font-lato text-stone-500 font-light leading-relaxed mb-6">
             A cosy and intimate room with a 150cm double bed. Perfect for couples walking the Camino together. Includes window with natural light and private storage.
           </p>
@@ -45,44 +91,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <!-- DIVIDER -->
       <div class="border-t border-stone-200"></div>
 
-      <!-- ROOM 2: Habitación Accesible -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <!-- Info (reversed order on desktop) -->
-        <div class="md:order-2">
-          <p class="text-amber-600 uppercase tracking-[0.3em] text-xs font-lato mb-2">Room 02</p>
-          <h2 class="font-playfair text-3xl text-stone-800 mb-4">Habitación Accesible</h2>
-          <p class="font-lato text-stone-500 font-light leading-relaxed mb-6">
-            A fully adapted room for pilgrims with reduced mobility. Features a 150cm bed at accessible height, wide doorways, grab rails, and a roll-in shower.
-          </p>
-          <ul class="flex flex-wrap gap-3 mb-8">
-            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">150cm bed</li>
-            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Wheelchair access</li>
-            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Grab rails</li>
-            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Roll-in shower</li>
-          </ul>
-          <a href="/contact#contact-form" class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors">
-            Book This Room
-          </a>
-        </div>
-        <!-- Placeholder Image -->
-        <div class="bg-stone-200 h-72 flex items-center justify-center border border-stone-300 md:order-1">
-          <span class="text-stone-400 font-lato text-sm uppercase tracking-widest">Photo coming soon</span>
-        </div>
-      </div>
-
-      <!-- DIVIDER -->
-      <div class="border-t border-stone-200"></div>
-
       <!-- ROOM 3: Habitación Doble -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <!-- Placeholder Image -->
-        <div class="bg-stone-200 h-72 flex items-center justify-center border border-stone-300">
-          <span class="text-stone-400 font-lato text-sm uppercase tracking-widest">Photo coming soon</span>
-        </div>
+        <!-- Room Image -->
+        {twinRoomImagePaths.length > 0 ? (
+          <div
+            class="relative h-72 overflow-hidden border border-stone-300"
+            data-room-carousel
+            data-images={JSON.stringify(twinRoomImagePaths)}
+          >
+            <img
+              src={twinRoomImagePaths[0]}
+              alt="Twin Room at Pensión Agro da Porta"
+              class="h-full w-full object-cover"
+              data-carousel-image
+              loading="lazy"
+            />
+
+            <button
+              type="button"
+              class="absolute left-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+              data-carousel-prev
+              aria-label="Previous Twin Room image"
+            >
+              ←
+            </button>
+
+            <button
+              type="button"
+              class="absolute right-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+              data-carousel-next
+              aria-label="Next Twin Room image"
+            >
+              →
+            </button>
+
+            <p class="absolute bottom-3 right-3 bg-stone-900/70 px-2 py-1 font-lato text-xs text-stone-50">
+              <span data-carousel-index>1</span>/{twinRoomImagePaths.length}
+            </p>
+          </div>
+        ) : (
+          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+        )}
         <!-- Info -->
         <div>
-          <p class="text-amber-600 uppercase tracking-[0.3em] text-xs font-lato mb-2">Room 03</p>
-          <h2 class="font-playfair text-3xl text-stone-800 mb-4">Habitación Doble</h2>
+          <h2 class="font-playfair text-3xl text-stone-800 mb-4">Twin Room</h2>
           <p class="font-lato text-stone-500 font-light leading-relaxed mb-6">
             A spacious room with two 90cm single beds, ideal for friends or two pilgrims sharing. Plenty of space for backpacks, boots and everything the Camino demands.
           </p>
@@ -109,5 +162,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Contact Us
     </a>
   </section>
+
+  <script>
+    const carousels = document.querySelectorAll('[data-room-carousel]');
+
+    carousels.forEach((carousel) => {
+      const rawImages = carousel.getAttribute('data-images') || '[]';
+      const images = JSON.parse(rawImages) as string[];
+      const imageElement = carousel.querySelector<HTMLImageElement>('[data-carousel-image]');
+      const prevButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+      const nextButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+      const indexElement = carousel.querySelector<HTMLElement>('[data-carousel-index]');
+
+      if (!imageElement || !prevButton || !nextButton || !indexElement || images.length === 0) {
+        return;
+      }
+
+      let currentIndex = 0;
+
+      const updateSlide = () => {
+        imageElement.src = images[currentIndex];
+        indexElement.textContent = String(currentIndex + 1);
+      };
+
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateSlide();
+      });
+
+      nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateSlide();
+      });
+
+      if (images.length === 1) {
+        prevButton.disabled = true;
+        nextButton.disabled = true;
+        prevButton.classList.add('cursor-not-allowed', 'opacity-50');
+        nextButton.classList.add('cursor-not-allowed', 'opacity-50');
+      }
+    });
+  </script>
 
 </BaseLayout>
