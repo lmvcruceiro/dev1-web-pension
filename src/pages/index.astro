@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { mainPageImagePaths } from '../data/mainPageImages';
 ---
 
 <BaseLayout title="Home" description="Agro da Porta - A warm and welcoming albergue on the Camino de Santiago">
 
   <!-- HERO SECTION -->
-  <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-stone-900 md:min-h-[90vh]">
+  <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-[#8b5a3c] md:min-h-[90vh]">
     <!-- Background image -->
     <div
       class="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -32,8 +33,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         A warm refuge for pilgrims. Rest, connect, and continue your journey renewed.
       </p>
       <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+        <!-- Booking page temporarily disabled -->
+        <!--
         <a href="/booking" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
           Book Your Stay
+        </a>
+        -->
+        <a href="/contact#contact-form" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+          Contact Us
         </a>
         <a href="/services" class="w-full border border-stone-400 px-8 py-4 text-center font-lato text-sm font-light uppercase tracking-[0.14em] text-stone-200 transition-colors hover:border-amber-400 hover:text-amber-400 sm:w-auto sm:tracking-widest">
           Our Services
@@ -56,87 +63,72 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">A Home Along the Way</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Feature 1 -->
-        <div class="text-center group">
-          <div class="w-16 h-16 mx-auto mb-4 bg-amber-50 border border-amber-200 flex items-center justify-center group-hover:bg-amber-400 transition-colors">
-            <span class="text-2xl">🛏️</span>
-          </div>
-          <h3 class="font-playfair text-lg text-stone-800 mb-2">Comfortable Beds</h3>
-          <p class="font-lato text-sm text-stone-500 font-light leading-relaxed">Quality bunks and private rooms so you wake up ready for the next stage.</p>
+      <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div
+          class="relative overflow-hidden border border-stone-300 bg-stone-200"
+          data-main-page-carousel
+          data-images={JSON.stringify(mainPageImagePaths)}
+        >
+          <img
+            src={mainPageImagePaths[0]}
+            alt="Pensión Agro da Porta gallery image"
+            class="h-full min-h-[280px] w-full object-cover"
+            data-carousel-image
+            loading="lazy"
+          />
+
+          <button
+            type="button"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+            data-carousel-prev
+            aria-label="Previous image"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+            data-carousel-next
+            aria-label="Next image"
+          >
+            →
+          </button>
+
+          <p class="absolute bottom-3 right-3 bg-stone-900/70 px-2 py-1 font-lato text-xs text-stone-50">
+            <span data-carousel-index>1</span>/{mainPageImagePaths.length}
+          </p>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="text-center group">
-          <div class="w-16 h-16 mx-auto mb-4 bg-amber-50 border border-amber-200 flex items-center justify-center group-hover:bg-amber-400 transition-colors">
-            <span class="text-2xl">🍳</span>
-          </div>
-          <h3 class="font-playfair text-lg text-stone-800 mb-2">Pilgrim Breakfast</h3>
-          <p class="font-lato text-sm text-stone-500 font-light leading-relaxed">Start your morning with a hearty traditional breakfast before hitting the trail.</p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="text-center group">
-          <div class="w-16 h-16 mx-auto mb-4 bg-amber-50 border border-amber-200 flex items-center justify-center group-hover:bg-amber-400 transition-colors">
-            <span class="text-2xl">📍</span>
-          </div>
-          <h3 class="font-playfair text-lg text-stone-800 mb-2">Prime Location</h3>
-          <p class="font-lato text-sm text-stone-500 font-light leading-relaxed">Perfectly positioned on the route — close to everything you need.</p>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="text-center group">
-          <div class="w-16 h-16 mx-auto mb-4 bg-amber-50 border border-amber-200 flex items-center justify-center group-hover:bg-amber-400 transition-colors">
-            <span class="text-2xl">🤝</span>
-          </div>
-          <h3 class="font-playfair text-lg text-stone-800 mb-2">Pilgrim Community</h3>
-          <p class="font-lato text-sm text-stone-500 font-light leading-relaxed">Meet fellow pilgrims and share stories in our warm common areas.</p>
+        <div>
+          <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">A Restful Stop On The Camino</h2>
+          <p class="mt-5 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+            Pensión Agro da Porta is a welcoming stop for pilgrims seeking comfort, calm, and genuine local hospitality.
+            We combine practical services with a warm atmosphere, so you can recover from the day and begin the next stage with energy.
+          </p>
+          <p class="mt-4 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+            Whether you are walking solo or with friends, our house is designed to make your Camino journey easier,
+            from quality rest to helpful guidance about the route ahead.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- QUICK INFO STRIP -->
-  <section class="bg-stone-900 px-4 py-10 text-stone-100 sm:px-6">
+  <section class="bg-[#8b5a3c] px-4 py-10 text-amber-50 sm:px-6">
     <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div>
         <p class="text-amber-400 font-playfair text-3xl font-bold">€15</p>
-        <p class="text-stone-400 text-sm uppercase tracking-widest font-lato mt-1">Per night from</p>
+        <p class="text-amber-200/80 text-sm uppercase tracking-widest font-lato mt-1">Per night from</p>
       </div>
       <div>
         <p class="text-amber-400 font-playfair text-3xl font-bold">Open</p>
-        <p class="text-stone-400 text-sm uppercase tracking-widest font-lato mt-1">March — October</p>
+        <p class="text-amber-200/80 text-sm uppercase tracking-widest font-lato mt-1">March — October</p>
       </div>
       <div>
         <p class="text-amber-400 font-playfair text-3xl font-bold">Camino Francés</p>
-        <p class="text-stone-400 text-sm uppercase tracking-widest font-lato mt-1">Route</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section class="bg-stone-100 px-4 py-16 sm:px-6 sm:py-24">
-    <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
-      <div class="overflow-hidden border border-stone-300 bg-stone-200">
-        <img
-          src="/images/pension.webp"
-          alt="Exterior view of Pension Agro da Porta"
-          class="h-full min-h-[280px] w-full object-cover"
-          loading="lazy"
-        />
-      </div>
-
-      <div>
-        <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-700 sm:tracking-[0.3em]">About Us</p>
-        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">A Restful Stop On The Camino</h2>
-        <p class="mt-5 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
-          Pensión Agro da Porta is a welcoming stop for pilgrims seeking comfort, calm, and genuine local hospitality.
-          We combine practical services with a warm atmosphere, so you can recover from the day and begin the next stage with energy.
-        </p>
-        <p class="mt-4 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
-          Whether you are walking solo or with friends, our house is designed to make your Camino journey easier,
-          from quality rest to helpful guidance about the route ahead.
-        </p>
+        <p class="text-amber-200/80 text-sm uppercase tracking-widest font-lato mt-1">Route</p>
       </div>
     </div>
   </section>
@@ -181,10 +173,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <!-- FINAL CTA -->
-  <section class="bg-stone-800 px-4 py-16 text-center sm:px-6 sm:py-24">
+  <section class="bg-[#74462b] px-4 py-16 text-center sm:px-6 sm:py-24">
     <div class="max-w-2xl mx-auto">
-      <h2 class="mb-4 font-playfair text-3xl text-stone-50 sm:text-4xl">Ready to Walk?</h2>
-      <p class="mb-8 font-lato text-base font-light text-stone-400 sm:mb-10 sm:text-lg">Your bed is waiting. Reach out and we'll take care of the rest.</p>
+      <h2 class="mb-4 font-playfair text-3xl text-amber-50 sm:text-4xl">Ready to Walk?</h2>
+      <p class="mb-8 font-lato text-base font-light text-amber-200/80 sm:mb-10 sm:text-lg">Your bed is waiting. Reach out and we'll take care of the rest.</p>
       <a href="/contact#contact-form" class="inline-block w-full bg-amber-400 px-10 py-4 font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
         Get in Touch
       </a>
@@ -192,3 +184,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
 </BaseLayout>
+
+<script>
+  const carousels = document.querySelectorAll('[data-main-page-carousel]');
+
+  carousels.forEach((carousel) => {
+    const rawImages = carousel.getAttribute('data-images') || '[]';
+    const images = JSON.parse(rawImages) as string[];
+    const imageElement = carousel.querySelector<HTMLImageElement>('[data-carousel-image]');
+    const prevButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const indexElement = carousel.querySelector<HTMLElement>('[data-carousel-index]');
+
+    if (!imageElement || !prevButton || !nextButton || !indexElement || images.length === 0) {
+      return;
+    }
+
+    let currentIndex = 0;
+
+    const updateSlide = () => {
+      imageElement.src = images[currentIndex];
+      indexElement.textContent = String(currentIndex + 1);
+    };
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlide();
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlide();
+    });
+
+    if (images.length === 1) {
+      prevButton.disabled = true;
+      nextButton.disabled = true;
+      prevButton.classList.add('cursor-not-allowed', 'opacity-50');
+      nextButton.classList.add('cursor-not-allowed', 'opacity-50');
+    }
+  });
+</script>

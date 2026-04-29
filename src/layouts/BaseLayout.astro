@@ -2,18 +2,57 @@
 const {
   title = "Pensión Agro da Porta",
   description = "A warm albergue on the Camino de Santiago",
+  lang = 'en',
 } = Astro.props;
 import '../styles/global.css';
 
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isActive = (href) => {
-  if (href === '/') return pathname === '/';
-  return pathname === href || pathname.startsWith(`${href}/`);
+const isSpanish = lang === 'es';
+const navBase = isSpanish ? '/es' : '';
+const toLocalizedPath = (href: string) => {
+  if (href === '/') return navBase || '/';
+  return `${navBase}${href}`;
 };
+const isActive = (href: string) => {
+  const localizedHref = toLocalizedPath(href);
+  if (localizedHref === '/') return pathname === '/';
+  return pathname === localizedHref || pathname.startsWith(`${localizedHref}/`);
+};
+
+const englishPath = pathname.startsWith('/es') ? pathname.slice(3) || '/' : pathname;
+const spanishPath = pathname.startsWith('/es')
+  ? (pathname === '/es' ? '/es/' : pathname)
+  : (pathname === '/' ? '/es/' : `/es${pathname}`);
+
+const uiText = isSpanish
+  ? {
+      home: 'Inicio',
+      rooms: 'Habitaciones',
+      services: 'Servicios',
+      book: 'Reservar',
+      contact: 'Contacto',
+      languageSwitch: 'Idioma',
+      contactLabel: 'Contacto',
+      followUs: 'Síguenos',
+      rights: '(c) 2025 Pensión Agro da Porta. Todos los derechos reservados.',
+      location: 'Palas de Rei, Galicia, España',
+    }
+  : {
+      home: 'Home',
+      rooms: 'Rooms',
+      services: 'Services',
+      book: 'Book',
+      contact: 'Contact',
+      languageSwitch: 'Language',
+      contactLabel: 'Contact',
+      followUs: 'Follow Us',
+      rights: '(c) 2025 Pensión Agro da Porta. All rights reserved.',
+      location: 'Palas de Rei, Galicia, Spain',
+    };
 ---
 
 <!doctype html>
-<html lang="en" class="overflow-x-hidden">
+<html lang={lang} class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,61 +67,84 @@ const isActive = (href) => {
   </head>
 
   <body class="m-0 overflow-x-hidden bg-stone-50 text-stone-800 font-lato">
-    <header class="w-full bg-stone-900 px-4 py-4 text-stone-100 sm:px-6">
-      <nav class="mx-auto flex max-w-5xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <header class="w-full bg-[#8b5a3c] px-2 py-4 text-amber-50 sm:px-3">
+      <nav class="flex w-full flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-3">
         <a
-          href="/"
-          class="font-playfair text-xl font-bold tracking-wide text-amber-400 transition-colors hover:text-amber-300 sm:text-2xl"
+          href={toLocalizedPath('/')}
+          class="font-playfair text-xl font-bold tracking-wide text-amber-400 transition-colors hover:text-amber-300 sm:ml-3 sm:text-2xl"
         >
           Pensión Agro da Porta
         </a>
-        <ul class="flex w-full flex-wrap gap-x-5 gap-y-2 text-xs font-light uppercase tracking-[0.08em] sm:w-auto sm:gap-8 sm:text-sm sm:tracking-widest">
+        <ul class="flex w-full flex-wrap gap-x-5 gap-y-2 text-xs font-light uppercase tracking-[0.08em] sm:ml-16 sm:w-auto sm:gap-8 sm:text-sm sm:tracking-widest">
           <li>
             <a
-              href="/"
+              href={toLocalizedPath('/')}
               aria-current={isActive('/') ? 'page' : undefined}
               class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
             >
-              Home
+              {uiText.home}
             </a>
           </li>
           <li>
             <a
-              href="/rooms"
+              href={toLocalizedPath('/rooms')}
               aria-current={isActive('/rooms') ? 'page' : undefined}
               class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/rooms') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
             >
-              Rooms
+              {uiText.rooms}
             </a>
           </li>
           <li>
             <a
-              href="/services"
+              href={toLocalizedPath('/services')}
               aria-current={isActive('/services') ? 'page' : undefined}
               class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/services') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
             >
-              Services
+              {uiText.services}
             </a>
           </li>
+          <!-- Book page temporarily disabled -->
+          <!--
           <li>
             <a
-              href="/booking"
+              href={toLocalizedPath('/booking')}
               aria-current={isActive('/booking') ? 'page' : undefined}
               class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/booking') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
             >
-              Book
+              {uiText.book}
             </a>
           </li>
+          -->
           <li>
             <a
-              href="/contact"
+              href={toLocalizedPath('/contact')}
               aria-current={isActive('/contact') ? 'page' : undefined}
               class={`block py-1 transition-colors hover:text-amber-400 ${isActive('/contact') ? 'text-amber-400 underline decoration-amber-400 underline-offset-8' : ''}`}
             >
-              Contact
+              {uiText.contact}
             </a>
           </li>
         </ul>
+
+        <div class="flex items-center gap-2 sm:ml-auto sm:mr-4">
+          <span class="font-lato text-[10px] uppercase tracking-[0.18em] text-amber-200/80">{uiText.languageSwitch}</span>
+          <div class="inline-flex overflow-hidden rounded border border-amber-300/60">
+            <a
+              href={englishPath}
+              class={`px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${!isSpanish ? 'bg-amber-400 text-stone-900' : 'text-amber-100 hover:bg-amber-400/20'}`}
+              aria-label="Switch to English"
+            >
+              EN
+            </a>
+            <a
+              href={spanishPath}
+              class={`px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${isSpanish ? 'bg-amber-400 text-stone-900' : 'text-amber-100 hover:bg-amber-400/20'}`}
+              aria-label="Cambiar a español"
+            >
+              ES
+            </a>
+          </div>
+        </div>
       </nav>
     </header>
 
@@ -90,25 +152,24 @@ const isActive = (href) => {
       <slot />
     </main>
 
-    <footer class="mt-16 bg-stone-900 px-4 py-10 text-stone-400 sm:mt-20 sm:px-6">
+    <footer class="mt-16 bg-[#74462b] px-4 py-10 text-amber-100/80 sm:mt-20 sm:px-6">
       <div class="mx-auto flex max-w-5xl flex-col justify-between gap-8 text-sm md:flex-row">
         <div>
           <p class="mb-2 text-lg font-playfair font-semibold text-amber-400">Pensión Agro da Porta</p>
-          <p>Camino de Santiago</p>
-          <p>Espana</p>
+          <p>{uiText.location}</p>
         </div>
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-300">Contact</p>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-200/80">{uiText.contactLabel}</p>
           <p>infoagrodaporta@gmail.com</p>
           <p>+34 744 25 14 54</p>
         </div>
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-300">Follow Us</p>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-200/80">{uiText.followUs}</p>
           <p>Instagram</p>
           <p>Facebook</p>
         </div>
       </div>
-      <p class="mt-8 text-center text-[11px] text-stone-600 sm:text-xs">(c) 2025 Pensión Agro da Porta. All rights reserved.</p>
+      <p class="mt-8 text-center text-[11px] text-amber-200/50 sm:text-xs">{uiText.rights}</p>
     </footer>
   </body>
 </html>

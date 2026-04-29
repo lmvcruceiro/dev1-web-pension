@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { mainPageImagePaths } from '../../data/mainPageImages';
+---
+
+<BaseLayout lang="es" title="Inicio" description="Agro da Porta - Una pensión acogedora en el Camino de Santiago">
+  <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-[#8b5a3c] md:min-h-[90vh]">
+    <div
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('/images/caminho.webp');"
+    ></div>
+
+    <div class="absolute inset-0 bg-gradient-to-br from-stone-950/35 via-stone-900/22 to-amber-950/30"></div>
+
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 left-1/2 h-full w-px origin-top rotate-12 transform bg-amber-400 opacity-10"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6">
+      <p class="mb-5 animate-fade-in font-lato text-xs font-light uppercase tracking-[0.25em] text-amber-400 sm:mb-6 sm:text-sm sm:tracking-[0.4em]">
+        Camino de Santiago
+      </p>
+      <h1 class="mb-5 font-playfair text-4xl leading-tight font-bold text-stone-50 sm:text-6xl md:mb-6 md:text-8xl">
+        Pensión<br /><span class="italic text-amber-400">Agro da Porta</span>
+      </h1>
+      <p class="mx-auto mb-8 max-w-xl font-lato text-base leading-relaxed font-light text-stone-300 sm:text-lg md:mb-10 md:text-xl">
+        Un refugio cálido para peregrinos. Descansa, comparte y continúa tu camino con energía renovada.
+      </p>
+      <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+        <!-- Página de reservas desactivada temporalmente -->
+        <!--
+        <a href="/es/booking" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+          Reserva Tu Estancia
+        </a>
+        -->
+        <a href="/es/contact#contact-form" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+          Contactar
+        </a>
+        <a href="/es/services" class="w-full border border-stone-400 px-8 py-4 text-center font-lato text-sm font-light uppercase tracking-[0.14em] text-stone-200 transition-colors hover:border-amber-400 hover:text-amber-400 sm:w-auto sm:tracking-widest">
+          Nuestros Servicios
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-stone-500 md:bottom-8">
+      <span class="font-lato text-[11px] uppercase tracking-[0.14em] sm:text-xs sm:tracking-widest">Desliza</span>
+      <div class="h-10 w-px bg-gradient-to-b from-stone-500 to-transparent sm:h-12"></div>
+    </div>
+  </section>
+
+  <section class="bg-stone-50 px-4 py-16 sm:px-6 sm:py-24">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-600 sm:tracking-[0.3em]">Por Qué Nos Eligen</p>
+        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Hogar En Tu Camino</h2>
+      </div>
+
+      <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div
+          class="relative overflow-hidden border border-stone-300 bg-stone-200"
+          data-main-page-carousel
+          data-images={JSON.stringify(mainPageImagePaths)}
+        >
+          <img
+            src={mainPageImagePaths[0]}
+            alt="Galería de Pensión Agro da Porta"
+            class="h-full min-h-[280px] w-full object-cover"
+            data-carousel-image
+            loading="lazy"
+          />
+
+          <button
+            type="button"
+            class="absolute left-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+            data-carousel-prev
+            aria-label="Imagen anterior"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 bg-stone-900/70 px-3 py-2 text-sm text-stone-50 transition-colors hover:bg-stone-900"
+            data-carousel-next
+            aria-label="Siguiente imagen"
+          >
+            →
+          </button>
+
+          <p class="absolute bottom-3 right-3 bg-stone-900/70 px-2 py-1 font-lato text-xs text-stone-50">
+            <span data-carousel-index>1</span>/{mainPageImagePaths.length}
+          </p>
+        </div>
+
+        <div>
+          <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-700 sm:tracking-[0.3em]">Sobre Nosotros</p>
+          <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Descanso Reparador En El Camino</h2>
+          <p class="mt-5 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+            Pensión Agro da Porta es una parada acogedora para peregrinos que buscan comodidad, calma y hospitalidad local auténtica.
+            Combinamos servicios prácticos con un ambiente cercano para que recuperes fuerzas y afrontes la siguiente etapa con energía.
+          </p>
+          <p class="mt-4 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+            Tanto si viajas solo como en grupo, nuestra casa está pensada para hacer tu Camino más sencillo:
+            descanso de calidad, atención personal y ayuda útil para la ruta que viene.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#8b5a3c] px-4 py-10 text-amber-50 sm:px-6">
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-8 text-center md:grid-cols-3">
+      <div>
+        <p class="font-playfair text-3xl font-bold text-amber-400">€15</p>
+        <p class="mt-1 font-lato text-sm uppercase tracking-widest text-amber-200/80">Desde por noche</p>
+      </div>
+      <div>
+        <p class="font-playfair text-3xl font-bold text-amber-400">Abierto</p>
+        <p class="mt-1 font-lato text-sm uppercase tracking-widest text-amber-200/80">Marzo - Octubre</p>
+      </div>
+      <div>
+        <p class="font-playfair text-3xl font-bold text-amber-400">Camino Francés</p>
+        <p class="mt-1 font-lato text-sm uppercase tracking-widest text-amber-200/80">Ruta</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-amber-50 px-4 py-16 sm:px-6 sm:py-24">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-600 sm:tracking-[0.3em]">Voces Peregrinas</p>
+        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Lo Que Dicen</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="border-l-4 border-amber-400 bg-white p-8">
+          <p class="mb-6 font-lato italic font-light leading-relaxed text-stone-600">
+            "El mejor albergue de todo el Camino. El trato de los anfitriones nos hizo sentir como en casa tras una jornada larga."
+          </p>
+          <p class="font-playfair font-semibold text-stone-800">- María G.</p>
+          <p class="mt-1 font-lato text-xs uppercase tracking-widest text-stone-400">Peregrina de Madrid</p>
+        </div>
+
+        <div class="border-l-4 border-amber-400 bg-white p-8">
+          <p class="mb-6 font-lato italic font-light leading-relaxed text-stone-600">
+            "Limpio, económico y en una ubicación perfecta. El desayuno me dio la energía que necesitaba para continuar."
+          </p>
+          <p class="font-playfair font-semibold text-stone-800">- Thomas K.</p>
+          <p class="mt-1 font-lato text-xs uppercase tracking-widest text-stone-400">Peregrino de Alemania</p>
+        </div>
+
+        <div class="border-l-4 border-amber-400 bg-white p-8">
+          <p class="mb-6 font-lato italic font-light leading-relaxed text-stone-600">
+            "He hecho el Camino tres veces y siempre me alojo en Pensión Agro da Porta. Es como volver a casa."
+          </p>
+          <p class="font-playfair font-semibold text-stone-800">- Anne-Sophie L.</p>
+          <p class="mt-1 font-lato text-xs uppercase tracking-widest text-stone-400">Peregrina de Francia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#74462b] px-4 py-16 text-center sm:px-6 sm:py-24">
+    <div class="mx-auto max-w-2xl">
+      <h2 class="mb-4 font-playfair text-3xl text-amber-50 sm:text-4xl">Listo Para Caminar</h2>
+      <p class="mb-8 font-lato text-base font-light text-amber-200/80 sm:mb-10 sm:text-lg">Tu cama te espera. Escríbenos y nos ocupamos del resto.</p>
+      <a href="/es/contact#contact-form" class="inline-block w-full bg-amber-400 px-10 py-4 font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+        Contactar
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const carousels = document.querySelectorAll('[data-main-page-carousel]');
+
+  carousels.forEach((carousel) => {
+    const rawImages = carousel.getAttribute('data-images') || '[]';
+    const images = JSON.parse(rawImages) as string[];
+    const imageElement = carousel.querySelector<HTMLImageElement>('[data-carousel-image]');
+    const prevButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const indexElement = carousel.querySelector<HTMLElement>('[data-carousel-index]');
+
+    if (!imageElement || !prevButton || !nextButton || !indexElement || images.length === 0) {
+      return;
+    }
+
+    let currentIndex = 0;
+
+    const updateSlide = () => {
+      imageElement.src = images[currentIndex];
+      indexElement.textContent = String(currentIndex + 1);
+    };
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlide();
+    });
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlide();
+    });
+
+    if (images.length === 1) {
+      prevButton.disabled = true;
+      nextButton.disabled = true;
+      prevButton.classList.add('cursor-not-allowed', 'opacity-50');
+      nextButton.classList.add('cursor-not-allowed', 'opacity-50');
+    }
+  });
+</script>

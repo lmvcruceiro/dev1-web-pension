@@ -1,0 +1,335 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const rooms = [
+  {
+    id: 1,
+    name: 'Habitación con Cama de Matrimonio',
+    description: 'Una habitación acogedora con cama de 150 cm. Perfecta para parejas que recorren el Camino juntas.',
+    price: 55,
+    capacity: 2,
+    tags: ['Cama de 150 cm', 'Habitación privada', 'Luz natural', 'Almacenaje'],
+    icon: '🛏️'
+  },
+  {
+    id: 2,
+    name: 'Habitación Accesible',
+    description: 'Habitación totalmente adaptada para peregrinos con movilidad reducida. Puertas anchas, barras de apoyo y ducha a ras de suelo.',
+    price: 55,
+    capacity: 2,
+    tags: ['Cama de 150 cm', 'Acceso en silla de ruedas', 'Barras de apoyo', 'Ducha a ras de suelo'],
+    icon: '♿'
+  },
+  {
+    id: 3,
+    name: 'Habitación Doble',
+    description: 'Habitación amplia con dos camas de 90 cm. Ideal para amigos o dos peregrinos compartiendo estancia.',
+    price: 45,
+    capacity: 2,
+    tags: ['2 x camas de 90 cm', 'Habitación privada', 'Espaciosa', 'Almacenaje'],
+    icon: '🛏️🛏️'
+  }
+];
+---
+
+<BaseLayout lang="es" title="Reservas" description="Reserva tu habitación en Pensión Agro da Porta en el Camino de Santiago">
+  <section class="bg-[#8b5a3c] px-6 py-24 text-center">
+    <p class="mb-4 font-lato text-xs uppercase tracking-[0.4em] text-amber-400">Reserva Tu Habitación</p>
+    <h1 class="mb-6 font-playfair text-5xl font-bold text-stone-50 md:text-6xl">Reserva Tu Estancia</h1>
+    <p class="mx-auto max-w-xl font-lato text-lg font-light leading-relaxed text-amber-100/80">
+      Mejor precio garantizado al reservar directamente con nosotros.
+    </p>
+  </section>
+
+  <section class="bg-amber-400 px-6 py-5 text-center">
+    <p class="font-lato text-sm font-bold uppercase tracking-widest text-stone-900">
+      Apertura primavera 2026 - La reserva online estará disponible pronto
+    </p>
+  </section>
+
+  <section class="bg-stone-50 px-4 py-12 sm:px-6">
+    <div class="mx-auto max-w-3xl">
+      <div class="border border-stone-200 bg-white p-8">
+        <h2 class="mb-2 text-center font-playfair text-2xl text-stone-800">Consultar Disponibilidad</h2>
+        <p class="mb-6 text-center font-lato text-sm text-stone-500">
+          Por ahora, este formulario envía una consulta. Está preparado para conectarse a Beds24 o Redforts más adelante.
+        </p>
+
+        <form id="booking-inquiry-form" class="space-y-5" action="/es/contact#contact-form" method="get" data-booking-adapter="pending">
+          <input type="hidden" name="source" value="booking-page" />
+          <input type="hidden" name="integration_target" value="beds24_or_redforts" />
+
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <label for="checkin" class="mb-2 block font-lato text-xs uppercase tracking-widest text-stone-500">
+                Fecha De Entrada
+              </label>
+              <input
+                type="date"
+                id="checkin"
+                name="checkin"
+                required
+                autocomplete="off"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:border-amber-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label for="checkout" class="mb-2 block font-lato text-xs uppercase tracking-widest text-stone-500">
+                Fecha De Salida
+              </label>
+              <input
+                type="date"
+                id="checkout"
+                name="checkout"
+                required
+                autocomplete="off"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:border-amber-400 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div>
+              <label for="adults" class="mb-2 block font-lato text-xs uppercase tracking-widest text-stone-500">
+                Adultos
+              </label>
+              <select
+                id="adults"
+                name="adults"
+                required
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:border-amber-400 focus:outline-none"
+              >
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="children" class="mb-2 block font-lato text-xs uppercase tracking-widest text-stone-500">
+                Niños
+              </label>
+              <select
+                id="children"
+                name="children"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:border-amber-400 focus:outline-none"
+              >
+                <option value="0" selected>0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="room_preference" class="mb-2 block font-lato text-xs uppercase tracking-widest text-stone-500">
+                Preferencia De Habitación
+              </label>
+              <select
+                id="room_preference"
+                name="room_preference"
+                class="w-full border border-stone-300 px-4 py-3 font-lato text-stone-800 focus:border-amber-400 focus:outline-none"
+              >
+                <option value="any" selected>Sin preferencia</option>
+                <option value="cama-de-matrimonio">Habitación con Cama de Matrimonio</option>
+                <option value="habitacion-accesible">Habitación Accesible</option>
+                <option value="habitacion-doble">Habitación Doble</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="sr-only" for="company">No rellenes este campo</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+            class="hidden"
+            aria-hidden="true"
+          />
+
+          <div id="nights-summary" class="hidden text-center font-lato text-sm text-stone-500">
+            <span id="nights-text"></span>
+          </div>
+
+          <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+            <p class="font-lato text-xs text-stone-500">Al continuar, aceptas que podamos contactarte sobre tu solicitud de reserva.</p>
+            <button
+              type="submit"
+              class="bg-amber-400 px-8 py-3 font-lato text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300"
+            >
+              Enviar Solicitud
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-stone-50 px-4 pb-16 sm:px-6">
+    <div class="mx-auto max-w-5xl">
+      <h2 class="mb-10 text-center font-playfair text-3xl text-stone-800">Elige Tu Habitación</h2>
+
+      <div class="flex flex-col gap-8">
+        {rooms.map((room) => (
+          <div class="grid grid-cols-1 overflow-hidden border border-stone-200 bg-white md:grid-cols-3">
+            <div class="flex h-56 items-center justify-center border-b border-stone-200 bg-stone-100 md:h-auto md:border-r md:border-b-0">
+              <div class="text-center">
+                <p class="mb-2 text-4xl">{room.icon}</p>
+                <p class="font-lato text-xs uppercase tracking-widest text-stone-400">Foto disponible pronto</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col justify-between p-6 md:col-span-2 md:p-8">
+              <div>
+                <h3 class="mb-2 font-playfair text-2xl text-stone-800">{room.name}</h3>
+                <p class="mb-4 font-lato font-light leading-relaxed text-stone-500">{room.description}</p>
+                <ul class="mb-6 flex flex-wrap gap-2">
+                  {room.tags.map((tag) => (
+                    <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-4 border-t border-stone-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <span class="font-playfair text-3xl font-bold text-stone-800">€{room.price}</span>
+                  <span class="font-lato text-sm text-stone-400"> / noche</span>
+                  <p id={`total-${room.id}`} class="mt-1 hidden font-lato text-xs text-amber-600"></p>
+                </div>
+                <a
+                  data-request-link
+                  data-room-name={room.name}
+                  href="/es/contact#contact-form"
+                  class="inline-block bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300"
+                >
+                  Solicitar Esta Habitación
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#74462b] px-4 py-16 sm:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="mb-3 font-lato text-xs uppercase tracking-[0.3em] text-amber-400">Sé De Los Primeros En Saberlo</p>
+      <h2 class="mb-4 font-playfair text-3xl text-stone-50">Apertura Primavera 2026</h2>
+      <p class="mb-8 font-lato font-light leading-relaxed text-amber-100/80">
+        Déjanos tu correo y te avisaremos en cuanto se active la reserva online. Los suscriptores tempranos recibirán una oferta de bienvenida exclusiva.
+      </p>
+      <div class="flex flex-col justify-center gap-3 sm:flex-row">
+        <input
+          type="email"
+          placeholder="tu@email.com"
+          class="w-full max-w-sm flex-1 border border-[#5f3a24] bg-[#8b5a3c] px-4 py-3 font-lato text-amber-50 placeholder-amber-100/60 focus:border-amber-300 focus:outline-none sm:w-auto"
+        />
+        <button class="bg-amber-400 px-8 py-3 font-lato text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300">
+          Avisarme
+        </button>
+      </div>
+      <p class="mt-4 font-lato text-xs text-amber-200/60">Sin spam. Solo un correo cuando se abran las reservas.</p>
+    </div>
+  </section>
+
+  <section class="bg-amber-50 px-4 py-12 sm:px-6">
+    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-8 text-center md:grid-cols-3">
+      <div>
+        <p class="mb-3 text-2xl">💰</p>
+        <h3 class="mb-2 font-playfair text-lg text-stone-800">Mejor Precio Garantizado</h3>
+        <p class="font-lato text-sm font-light text-stone-500">Reservar directamente con nosotros siempre será más económico que en otras plataformas.</p>
+      </div>
+      <div>
+        <p class="mb-3 text-2xl">✉️</p>
+        <h3 class="mb-2 font-playfair text-lg text-stone-800">Confirmación Rápida</h3>
+        <p class="font-lato text-sm font-light text-stone-500">Recibirás un correo de confirmación en cuanto gestionemos tu solicitud.</p>
+      </div>
+      <div>
+        <p class="mb-3 text-2xl">🤝</p>
+        <h3 class="mb-2 font-playfair text-lg text-stone-800">Cancelación Flexible</h3>
+        <p class="font-lato text-sm font-light text-stone-500">Cancelación gratuita hasta 48 horas antes de la llegada.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const checkin = document.getElementById('checkin') as HTMLInputElement | null;
+  const checkout = document.getElementById('checkout') as HTMLInputElement | null;
+  const nightsSummary = document.getElementById('nights-summary');
+  const nightsText = document.getElementById('nights-text');
+  const requestLinks = document.querySelectorAll<HTMLAnchorElement>('[data-request-link]');
+
+  function updateRoomLinks() {
+    requestLinks.forEach((link) => {
+      const room = link.dataset.roomName ?? '';
+      const params = new URLSearchParams({
+        source: 'booking-page',
+        room,
+      });
+
+      if (checkin?.value) params.set('checkin', checkin.value);
+      if (checkout?.value) params.set('checkout', checkout.value);
+
+      link.href = `/es/contact?${params.toString()}#contact-form`;
+    });
+  }
+
+  function calculateNights() {
+    if (!checkin || !checkout) return;
+
+    if (!checkin.value || !checkout.value) {
+      nightsSummary?.classList.add('hidden');
+      updateRoomLinks();
+      return;
+    }
+
+    const inDate = new Date(checkin.value);
+    const outDate = new Date(checkout.value);
+    const nights = Math.round((outDate.getTime() - inDate.getTime()) / (1000 * 60 * 60 * 24));
+
+    if (nights <= 0) {
+      nightsSummary?.classList.add('hidden');
+      updateRoomLinks();
+      return;
+    }
+
+    nightsSummary?.classList.remove('hidden');
+    if (nightsText) nightsText.textContent = `${nights} noche${nights > 1 ? 's' : ''} seleccionada${nights > 1 ? 's' : ''}`;
+
+    const prices = [55, 55, 45];
+    prices.forEach((price, index) => {
+      const totalEl = document.getElementById(`total-${index + 1}`);
+      if (totalEl) {
+        totalEl.textContent = `€${price * nights} en total para ${nights} noche${nights > 1 ? 's' : ''}`;
+        totalEl.classList.remove('hidden');
+      }
+    });
+
+    updateRoomLinks();
+  }
+
+  if (checkin && checkout) {
+    const today = new Date().toISOString().split('T')[0];
+    checkin.min = today;
+    checkout.min = today;
+
+    checkin.addEventListener('change', () => {
+      checkout.min = checkin.value || today;
+      if (checkout.value && checkout.value < checkin.value) {
+        checkout.value = '';
+      }
+      calculateNights();
+    });
+
+    checkout.addEventListener('change', calculateNights);
+  }
+
+  updateRoomLinks();
+</script>
