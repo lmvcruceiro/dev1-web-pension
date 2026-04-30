@@ -20,23 +20,23 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
       <p class="mb-5 animate-fade-in font-lato text-xs font-light uppercase tracking-[0.25em] text-amber-400 sm:mb-6 sm:text-sm sm:tracking-[0.4em]">
         Camino de Santiago
       </p>
-      <h1 class="mb-5 font-playfair text-4xl leading-tight font-bold text-stone-50 sm:text-6xl md:mb-6 md:text-8xl">
+      <h1 class="mb-5 font-playfair text-3xl leading-tight font-bold text-stone-50 sm:text-5xl md:mb-6 md:text-8xl">
         Pensión<br /><span class="italic text-amber-400">Agro da Porta</span>
       </h1>
-      <p class="mx-auto mb-8 max-w-xl font-lato text-base leading-relaxed font-light text-stone-300 sm:text-lg md:mb-10 md:text-xl">
+      <p class="mx-auto mb-8 max-w-xl font-lato text-sm leading-relaxed font-light text-stone-300 sm:text-base md:text-lg md:mb-10 md:text-xl">
         Un refugio cálido para peregrinos. Descansa, comparte y continúa tu camino con energía renovada.
       </p>
       <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
         <!-- Página de reservas desactivada temporalmente -->
         <!--
-        <a href="/es/booking" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+        <a href="/es/booking" class="w-full min-h-12 bg-amber-400 px-6 py-3 text-center font-lato text-xs font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:px-8 sm:py-4 sm:text-sm sm:tracking-widest">
           Reserva Tu Estancia
         </a>
         -->
-        <a href="/es/contact#contact-form" class="w-full bg-amber-400 px-8 py-4 text-center font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+        <a href="/es/contact#contact-form" class="w-full min-h-12 bg-amber-400 px-6 py-3 text-center font-lato text-xs font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:px-8 sm:py-4 sm:text-sm sm:tracking-widest">
           Contactar
         </a>
-        <a href="/es/services" class="w-full border border-stone-400 px-8 py-4 text-center font-lato text-sm font-light uppercase tracking-[0.14em] text-stone-200 transition-colors hover:border-amber-400 hover:text-amber-400 sm:w-auto sm:tracking-widest">
+        <a href="/es/services" class="w-full min-h-12 border border-stone-400 px-6 py-3 text-center font-lato text-xs font-light uppercase tracking-[0.14em] text-stone-200 transition-colors hover:border-amber-400 hover:text-amber-400 sm:px-8 sm:py-4 sm:text-sm sm:tracking-widest">
           Nuestros Servicios
         </a>
       </div>
@@ -55,7 +55,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
         <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Hogar En Tu Camino</h2>
       </div>
 
-      <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <div class="mx-auto grid max-w-6xl items-center gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-14">
         <div
           class="relative overflow-hidden border border-stone-300 bg-stone-200"
           data-main-page-carousel
@@ -64,7 +64,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
           <img
             src={mainPageImagePaths[0]}
             alt="Galería de Pensión Agro da Porta"
-            class="h-full min-h-[280px] w-full object-cover"
+            class="h-full min-h-[240px] w-full object-cover sm:min-h-[320px]"
             data-carousel-image
             loading="lazy"
           />
@@ -94,12 +94,12 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
 
         <div>
           <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-700 sm:tracking-[0.3em]">Sobre Nosotros</p>
-          <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Descanso Reparador En El Camino</h2>
-          <p class="mt-5 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+          <h2 class="font-playfair text-2xl text-stone-800 sm:text-3xl md:text-4xl">Un Descanso Reparador En El Camino</h2>
+          <p class="mt-4 font-lato text-xs leading-relaxed font-light text-stone-600 sm:text-sm md:text-base">
             Pensión Agro da Porta es una parada acogedora para peregrinos que buscan comodidad, calma y hospitalidad local auténtica.
             Combinamos servicios prácticos con un ambiente cercano para que recuperes fuerzas y afrontes la siguiente etapa con energía.
           </p>
-          <p class="mt-4 font-lato text-sm leading-relaxed font-light text-stone-600 sm:text-base">
+          <p class="mt-3 font-lato text-xs leading-relaxed font-light text-stone-600 sm:text-sm md:text-base">
             Tanto si viajas solo como en grupo, nuestra casa está pensada para hacer tu Camino más sencillo:
             descanso de calidad, atención personal y ayuda útil para la ruta que viene.
           </p>
@@ -164,7 +164,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
     <div class="mx-auto max-w-2xl">
       <h2 class="mb-4 font-playfair text-3xl text-amber-50 sm:text-4xl">Listo Para Caminar</h2>
       <p class="mb-8 font-lato text-base font-light text-amber-200/80 sm:mb-10 sm:text-lg">Tu cama te espera. Escríbenos y nos ocupamos del resto.</p>
-      <a href="/es/contact#contact-form" class="inline-block w-full bg-amber-400 px-10 py-4 font-lato text-sm font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:tracking-widest">
+      <a href="/es/contact#contact-form" class="inline-block w-full min-h-12 bg-amber-400 px-6 py-3 font-lato text-xs font-bold uppercase tracking-[0.14em] text-stone-900 transition-colors hover:bg-amber-300 sm:w-auto sm:px-10 sm:py-4 sm:text-sm sm:tracking-widest">
         Contactar
       </a>
     </div>

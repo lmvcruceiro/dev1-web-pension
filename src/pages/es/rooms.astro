@@ -24,10 +24,10 @@ const twinRoomImagePaths = [
 
   <section class="bg-stone-50 px-6 py-24">
     <div class="mx-auto flex max-w-5xl flex-col gap-16">
-      <div class="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+      <div class="grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-2 md:gap-10">
         {doubleRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-72 overflow-hidden border border-stone-300"
+            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(doubleRoomImagePaths)}
           >
@@ -76,7 +76,7 @@ const twinRoomImagePaths = [
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Luz natural</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Almacenaje</li>
           </ul>
-          <a href="/es/contact#contact-form" class="inline-block bg-amber-400 px-8 py-4 font-lato text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300">
+          <a href="/es/contact#contact-form" class="inline-block min-h-12 bg-amber-400 px-6 py-3 font-lato text-xs font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300 sm:text-sm sm:px-8 sm:py-4">
             Reservar Esta Habitación
           </a>
         </div>
@@ -84,10 +84,10 @@ const twinRoomImagePaths = [
 
       <div class="border-t border-stone-200"></div>
 
-      <div class="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+      <div class="grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-2 md:gap-10">
         {twinRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-72 overflow-hidden border border-stone-300"
+            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(twinRoomImagePaths)}
           >
@@ -136,7 +136,7 @@ const twinRoomImagePaths = [
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Espaciosa</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Almacenaje</li>
           </ul>
-          <a href="/es/contact#contact-form" class="inline-block bg-amber-400 px-8 py-4 font-lato text-sm font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300">
+          <a href="/es/contact#contact-form" class="inline-block min-h-12 bg-amber-400 px-6 py-3 font-lato text-xs font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300 sm:text-sm sm:px-8 sm:py-4">
             Reservar Esta Habitación
           </a>
         </div>
