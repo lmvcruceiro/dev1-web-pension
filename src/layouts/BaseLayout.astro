@@ -15,7 +15,7 @@ const toLocalizedPath = (href: string) => {
 };
 const isActive = (href: string) => {
   const localizedHref = toLocalizedPath(href);
-  if (localizedHref === '/') return pathname === '/';
+  if (href === '/') return pathname === localizedHref;
   return pathname === localizedHref || pathname.startsWith(`${localizedHref}/`);
 };
 
