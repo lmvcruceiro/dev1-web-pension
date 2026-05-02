@@ -1,16 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const doubleRoomImagePaths = [
-  '/images/double_room/01_double_room.webp',
-  '/images/double_room/02_inside_out_perspective.webp',
-];
-
-const twinRoomImagePaths = [
-  '/images/twin_room/01_twin_bed.webp',
-  '/images/twin_room/02_twin_bed_inside_out_perspective.webp',
-  '/images/twin_room/03_bathroom.webp',
-];
+import { doubleRoomImagePaths } from '../data/doubleRoomImages';
+import { twinRoomImagePaths } from '../data/twinRoomImages';
 ---
 
 <BaseLayout title="Our Rooms" description="Discover the rooms at Pensión Agro da Porta on the Camino de Santiago">
@@ -33,7 +24,7 @@ const twinRoomImagePaths = [
         <!-- Room Image -->
         {doubleRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
+            class="relative h-64 sm:h-80 md:h-96 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(doubleRoomImagePaths)}
           >
@@ -68,7 +59,7 @@ const twinRoomImagePaths = [
             </p>
           </div>
         ) : (
-          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+          <div class="h-96 border border-stone-300 bg-stone-200"></div>
         )}
         <!-- Info -->
         <div>
@@ -80,7 +71,10 @@ const twinRoomImagePaths = [
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">150cm bed</li>
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Private room</li>
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Natural light</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Private bathroom</li>
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Storage</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Hair dryer</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Free WiFi</li>
           </ul>
           <a href="/contact#contact-form" class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors">
             Book This Room
@@ -96,7 +90,7 @@ const twinRoomImagePaths = [
         <!-- Room Image -->
         {twinRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
+            class="relative h-64 sm:h-80 md:h-96 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(twinRoomImagePaths)}
           >
@@ -131,7 +125,7 @@ const twinRoomImagePaths = [
             </p>
           </div>
         ) : (
-          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+          <div class="h-96 border border-stone-300 bg-stone-200"></div>
         )}
         <!-- Info -->
         <div>
@@ -142,8 +136,11 @@ const twinRoomImagePaths = [
           <ul class="flex flex-wrap gap-3 mb-8">
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">2 × 90cm beds</li>
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Private room</li>
-            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Spacious</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Natural light</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Private bathroom</li>
             <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Storage</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Hair dryer</li>
+            <li class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-lato uppercase tracking-widest px-3 py-1">Free WiFi</li>
           </ul>
           <a href="/contact#contact-form" class="inline-block bg-amber-400 text-stone-900 font-lato font-bold uppercase tracking-widest text-sm px-8 py-4 hover:bg-amber-300 transition-colors">
             Book This Room

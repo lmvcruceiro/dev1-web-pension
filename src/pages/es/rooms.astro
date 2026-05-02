@@ -1,16 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-
-const doubleRoomImagePaths = [
-  '/images/double_room/01_double_room.webp',
-  '/images/double_room/02_inside_out_perspective.webp',
-];
-
-const twinRoomImagePaths = [
-  '/images/twin_room/01_twin_bed.webp',
-  '/images/twin_room/02_twin_bed_inside_out_perspective.webp',
-  '/images/twin_room/03_bathroom.webp',
-];
+import { doubleRoomImagePaths } from '../../data/doubleRoomImages';
+import { twinRoomImagePaths } from '../../data/twinRoomImages';
 ---
 
 <BaseLayout lang="es" title="Habitaciones" description="Descubre las habitaciones de Pensión Agro da Porta en el Camino de Santiago">
@@ -27,7 +18,7 @@ const twinRoomImagePaths = [
       <div class="grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-2 md:gap-10">
         {doubleRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
+            class="relative h-64 sm:h-80 md:h-96 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(doubleRoomImagePaths)}
           >
@@ -62,7 +53,7 @@ const twinRoomImagePaths = [
             </p>
           </div>
         ) : (
-          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+          <div class="h-96 border border-stone-300 bg-stone-200"></div>
         )}
 
         <div>
@@ -74,7 +65,10 @@ const twinRoomImagePaths = [
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Cama de 150 cm</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Habitación privada</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Luz natural</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Baño privado</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Almacenaje</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Secador de pelo</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">WiFi gratis</li>
           </ul>
           <a href="/es/contact#contact-form" class="inline-block min-h-12 bg-amber-400 px-6 py-3 font-lato text-xs font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300 sm:text-sm sm:px-8 sm:py-4">
             Reservar Esta Habitación
@@ -87,7 +81,7 @@ const twinRoomImagePaths = [
       <div class="grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-2 md:gap-10">
         {twinRoomImagePaths.length > 0 ? (
           <div
-            class="relative h-48 sm:h-64 md:h-72 overflow-hidden border border-stone-300"
+            class="relative h-64 sm:h-80 md:h-96 overflow-hidden border border-stone-300"
             data-room-carousel
             data-images={JSON.stringify(twinRoomImagePaths)}
           >
@@ -122,7 +116,7 @@ const twinRoomImagePaths = [
             </p>
           </div>
         ) : (
-          <div class="h-72 border border-stone-300 bg-stone-200"></div>
+          <div class="h-96 border border-stone-300 bg-stone-200"></div>
         )}
 
         <div>
@@ -133,8 +127,11 @@ const twinRoomImagePaths = [
           <ul class="mb-8 flex flex-wrap gap-3">
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">2 x camas de 90 cm</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Habitación privada</li>
-            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Espaciosa</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Luz natural</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Baño privado</li>
             <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Almacenaje</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">Secador de pelo</li>
+            <li class="border border-amber-200 bg-amber-50 px-3 py-1 font-lato text-xs uppercase tracking-widest text-amber-800">WiFi gratis</li>
           </ul>
           <a href="/es/contact#contact-form" class="inline-block min-h-12 bg-amber-400 px-6 py-3 font-lato text-xs font-bold uppercase tracking-widest text-stone-900 transition-colors hover:bg-amber-300 sm:text-sm sm:px-8 sm:py-4">
             Reservar Esta Habitación

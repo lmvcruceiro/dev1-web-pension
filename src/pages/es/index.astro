@@ -64,7 +64,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
           <img
             src={mainPageImagePaths[0]}
             alt="Galería de Pensión Agro da Porta"
-            class="h-full min-h-[270px] w-full object-cover sm:min-h-[360px]"
+            class="h-full min-h-[380px] w-full object-cover sm:min-h-[480px]"
             data-carousel-image
             loading="lazy"
           />
@@ -129,7 +129,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <div class="border-l-4 border-amber-400 bg-white p-8">
           <p class="mb-6 font-lato italic font-light leading-relaxed text-stone-600">
-            "El mejor albergue de todo el Camino. El trato de los anfitriones nos hizo sentir como en casa tras una jornada larga."
+            "La mejor pensión de todo el Camino. El trato de los anfitriones nos hizo sentir como en casa tras una jornada larga."
           </p>
           <p class="font-playfair font-semibold text-stone-800">- María G.</p>
           <p class="mt-1 font-lato text-xs uppercase tracking-widest text-stone-400">Peregrina de Madrid</p>
@@ -178,10 +178,10 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
       images = [];
     }
 
-    const imageElement = carousel.querySelector('[data-carousel-image]');
-    const prevButton = carousel.querySelector('[data-carousel-prev]');
-    const nextButton = carousel.querySelector('[data-carousel-next]');
-    const indexElement = carousel.querySelector('[data-carousel-index]');
+    const imageElement = carousel.querySelector<HTMLImageElement>('[data-carousel-image]');
+    const prevButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const indexElement = carousel.querySelector<HTMLElement>('[data-carousel-index]');
 
     if (!imageElement || images.length === 0) {
       return;
@@ -210,10 +210,6 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
 
     if (nextButton) {
       nextButton.addEventListener('click', goToNext);
-    }
-
-    if (images.length > 1) {
-      window.setInterval(goToNext, 4000);
     }
 
     if (images.length === 1 && prevButton && nextButton) {

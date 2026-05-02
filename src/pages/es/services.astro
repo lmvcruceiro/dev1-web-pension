@@ -1,5 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { servicesPageImagePaths } from '../../data/servicesPageImages';
+
+const servicesCarouselImagesHtml = servicesPageImagePaths
+  .map(
+    (imagePath: string) =>
+      `<img src="${imagePath}" alt="Comodidades de Pensión Agro da Porta" class="min-w-full h-full object-cover">`,
+  )
+  .join('');
+
+const servicesCarouselDotsHtml = servicesPageImagePaths
+  .map(
+    (_: string, index: number) =>
+      `<button class="h-2 w-2 rounded-full bg-white transition-opacity" data-carousel-dot="${index}" aria-label="Imagen ${index + 1}"></button>`,
+  )
+  .join('');
 ---
 
 <BaseLayout lang="es" title="Servicios" description="Descubre todo lo que ofrecemos en Pensión Agro da Porta para una parada cómoda en el Camino.">
@@ -27,10 +42,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <p class="mb-8 font-lato text-base leading-relaxed font-light text-stone-600 sm:text-lg">
             En Pensión Agro da Porta creemos que un alojamiento excepcional enriquece toda tu experiencia del Camino. Nuestros servicios cuidadosamente diseñados —desde el control climático individual hasta nuestro tranquilo jardín, desde el entretenimiento con Smart TV hasta instalaciones accesibles— están pensados para ti. Tanto si viajas en bicicleta, caminas solo o tienes necesidades de movilidad especiales, tenemos todo lo que necesitas para descansar, conectar y estar cómodo.
           </p>
-          <div class="relative overflow-hidden rounded-lg border border-stone-200 shadow-sm" data-carousel>
+          <div class="relative h-64 sm:h-80 md:h-96 overflow-hidden rounded-lg border border-stone-200 shadow-sm" data-carousel>
             <div class="flex transition-transform duration-500 ease-in-out" data-carousel-track>
-              <img src="/images/services_page/01_garden_view.webp" alt="Vistas del jardín en Pensión Agro da Porta" class="min-w-full object-cover aspect-video">
-              <img src="/images/services_page/02_garden_view.webp" alt="Vistas del jardín en Pensión Agro da Porta" class="min-w-full object-cover aspect-video">
+              <Fragment set:html={servicesCarouselImagesHtml} />
             </div>
             <button data-carousel-prev class="absolute left-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-stone-800 shadow transition-colors hover:bg-white" aria-label="Imagen anterior">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
@@ -39,14 +53,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
             </button>
             <div class="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2" data-carousel-dots>
-              <button class="h-2 w-2 rounded-full bg-white transition-opacity" data-carousel-dot="0" aria-label="Imagen 1"></button>
-              <button class="h-2 w-2 rounded-full bg-white/40 transition-opacity" data-carousel-dot="1" aria-label="Imagen 2"></button>
+              <Fragment set:html={servicesCarouselDotsHtml} />
             </div>
           </div>
         </div>
 
         <div class="order-2">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 [&>article]:px-2 [&>article]:py-3 sm:[&>article]:px-3 sm:[&>article]:py-4 [&>article>p:first-child]:mb-1 [&>article>p:first-child]:text-lg sm:[&>article>p:first-child]:mb-2 sm:[&>article>p:first-child]:text-xl [&>article>h3]:text-base sm:[&>article>h3]:text-lg [&>article>p:last-child]:mt-1 [&>article>p:last-child]:text-[11px] sm:[&>article>p:last-child]:mt-2 sm:[&>article>p:last-child]:text-xs">
             <article class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-4 shadow-sm transition-shadow hover:shadow-md sm:px-4 sm:py-5">
               <p class="mb-2 text-xl sm:mb-3 sm:text-2xl">🛏️</p>
               <h3 class="font-playfair text-lg text-stone-800 sm:text-xl">Camas Cómodas</h3>
@@ -104,6 +117,22 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             </article>
 
             <article class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-4 shadow-sm transition-shadow hover:shadow-md sm:px-4 sm:py-5">
+              <p class="mb-2 text-xl sm:mb-3 sm:text-2xl">🧳</p>
+              <h3 class="font-playfair text-lg text-stone-800 sm:text-xl">Almacenaje</h3>
+              <p class="mt-2 font-lato text-xs leading-relaxed font-light text-stone-600 sm:mt-3 sm:text-sm">
+                Espacio práctico para mochilas, equipaje y objetos personales para mantener la habitación cómoda y ordenada.
+              </p>
+            </article>
+
+            <article class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-4 shadow-sm transition-shadow hover:shadow-md sm:px-4 sm:py-5">
+              <p class="mb-2 text-xl sm:mb-3 sm:text-2xl">🪮</p>
+              <h3 class="font-playfair text-lg text-stone-800 sm:text-xl">Secador de Pelo</h3>
+              <p class="mt-2 font-lato text-xs leading-relaxed font-light text-stone-600 sm:mt-3 sm:text-sm">
+                Dispones de secador en la habitación para arreglarte con comodidad antes de la siguiente etapa.
+              </p>
+            </article>
+
+            <article class="rounded-lg border border-amber-200 bg-amber-50 px-3 py-4 shadow-sm transition-shadow hover:shadow-md sm:px-4 sm:py-5">
               <p class="mb-2 text-xl sm:mb-3 sm:text-2xl">🌳</p>
               <h3 class="font-playfair text-lg text-stone-800 sm:text-xl">Jardín</h3>
               <p class="mt-2 font-lato text-xs leading-relaxed font-light text-stone-600 sm:mt-3 sm:text-sm">
@@ -156,8 +185,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <h3 class="mt-3 font-playfair text-3xl text-amber-50">Disponibles Bajo Solicitud</h3>
         <ul class="mt-6 space-y-3 font-lato text-sm font-light text-amber-100/80">
           <li>Taxi al centro médico cercano</li>
-          <li>Desayuno para salidas muy tempranas</li>
           <li>Coordinación de llegada tardía</li>
+          <li>Mantas extra bajo solicitud</li>
           <li>Recomendaciones para cenar en la zona</li>
           <li>Ayuda para planificar la siguiente etapa</li>
         </ul>

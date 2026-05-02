@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { mainPageImagePaths } from '../data/mainPageImages';
 ---
 
-<BaseLayout title="Home" description="Agro da Porta - A warm and welcoming albergue on the Camino de Santiago">
+<BaseLayout title="Home" description="Agro da Porta - A warm and welcoming guesthouse on the Camino de Santiago">
 
   <!-- HERO SECTION -->
   <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-[#8b5a3c] md:min-h-[90vh]">
@@ -72,7 +72,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
           <img
             src={mainPageImagePaths[0]}
             alt="Pensión Agro da Porta gallery image"
-            class="h-full min-h-[270px] w-full object-cover sm:min-h-[360px]"
+            class="h-full min-h-[380px] w-full object-cover sm:min-h-[480px]"
             data-carousel-image
             loading="lazy"
           />
@@ -140,7 +140,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
         <!-- Testimonial 1 -->
         <div class="bg-white p-8 border-l-4 border-amber-400">
           <p class="font-lato text-stone-600 font-light italic leading-relaxed mb-6">
-            "The best albergue on the whole Camino. The warmth of the hosts made us feel completely at home after a long day of walking."
+            "The best guesthouse on the whole Camino. The warmth of the hosts made us feel completely at home after a long day of walking."
           </p>
           <p class="font-playfair text-stone-800 font-semibold">— María G.</p>
           <p class="text-xs text-stone-400 font-lato uppercase tracking-widest mt-1">Pilgrim from Madrid</p>
@@ -198,7 +198,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
     const nextButton = carousel.querySelector('[data-carousel-next]');
     const indexElement = carousel.querySelector('[data-carousel-index]');
 
-    if (!imageElement || images.length === 0) {
+    if (!(imageElement instanceof HTMLImageElement) || images.length === 0) {
       return;
     }
 
@@ -206,7 +206,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
 
     const updateSlide = () => {
       imageElement.src = images[currentIndex];
-      if (indexElement) {
+      if (indexElement instanceof HTMLElement) {
         indexElement.textContent = String(currentIndex + 1);
       }
     };
@@ -216,22 +216,18 @@ import { mainPageImagePaths } from '../data/mainPageImages';
       updateSlide();
     };
 
-    if (prevButton) {
+    if (prevButton instanceof HTMLButtonElement) {
       prevButton.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateSlide();
       });
     }
 
-    if (nextButton) {
+    if (nextButton instanceof HTMLButtonElement) {
       nextButton.addEventListener('click', goToNext);
     }
 
-    if (images.length > 1) {
-      window.setInterval(goToNext, 4000);
-    }
-
-    if (images.length === 1 && prevButton && nextButton) {
+    if (images.length === 1 && prevButton instanceof HTMLButtonElement && nextButton instanceof HTMLButtonElement) {
       prevButton.disabled = true;
       nextButton.disabled = true;
       prevButton.classList.add('cursor-not-allowed', 'opacity-50');
