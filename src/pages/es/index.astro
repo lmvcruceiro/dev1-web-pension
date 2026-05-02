@@ -52,7 +52,7 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
     <div class="mx-auto max-w-5xl">
       <div class="mb-12 text-center sm:mb-16">
         <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-600 sm:tracking-[0.3em]">Por Qué Nos Eligen</p>
-        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Hogar En Tu Camino</h2>
+        <h2 class="font-playfair text-3xl text-stone-800 sm:text-4xl">Un Descanso Reparador En El Camino</h2>
       </div>
 
       <div class="mx-auto grid max-w-6xl items-center gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-14">
@@ -86,16 +86,10 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
           >
             →
           </button>
-
-          <p class="absolute bottom-3 right-3 bg-stone-900/70 px-2 py-1 font-lato text-xs text-stone-50">
-            <span data-carousel-index>1</span>/{mainPageImagePaths.length}
-          </p>
         </div>
 
         <div>
-          <p class="mb-3 font-lato text-xs uppercase tracking-[0.2em] text-amber-700 sm:tracking-[0.3em]">Sobre Nosotros</p>
-          <h2 class="font-playfair text-2xl text-stone-800 sm:text-3xl md:text-4xl">Un Descanso Reparador En El Camino</h2>
-          <p class="mt-4 font-lato text-xs leading-relaxed font-light text-stone-600 sm:text-sm md:text-base">
+          <p class="font-lato text-xs leading-relaxed font-light text-stone-600 sm:text-sm md:text-base">
             Pensión Agro da Porta es una parada acogedora para peregrinos que buscan comodidad, calma y hospitalidad local auténtica.
             Combinamos servicios prácticos con un ambiente cercano para que recuperes fuerzas y afrontes la siguiente etapa con energía.
           </p>
@@ -176,13 +170,20 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
 
   carousels.forEach((carousel) => {
     const rawImages = carousel.getAttribute('data-images') || '[]';
-    const images = JSON.parse(rawImages) as string[];
-    const imageElement = carousel.querySelector<HTMLImageElement>('[data-carousel-image]');
-    const prevButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
-    const nextButton = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
-    const indexElement = carousel.querySelector<HTMLElement>('[data-carousel-index]');
+    let images = [];
 
-    if (!imageElement || !prevButton || !nextButton || !indexElement || images.length === 0) {
+    try {
+      images = JSON.parse(rawImages);
+    } catch {
+      images = [];
+    }
+
+    const imageElement = carousel.querySelector('[data-carousel-image]');
+    const prevButton = carousel.querySelector('[data-carousel-prev]');
+    const nextButton = carousel.querySelector('[data-carousel-next]');
+    const indexElement = carousel.querySelector('[data-carousel-index]');
+
+    if (!imageElement || images.length === 0) {
       return;
     }
 
@@ -190,20 +191,32 @@ import { mainPageImagePaths } from '../../data/mainPageImages';
 
     const updateSlide = () => {
       imageElement.src = images[currentIndex];
-      indexElement.textContent = String(currentIndex + 1);
+      if (indexElement) {
+        indexElement.textContent = String(currentIndex + 1);
+      }
     };
 
-    prevButton.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateSlide();
-    });
-
-    nextButton.addEventListener('click', () => {
+    const goToNext = () => {
       currentIndex = (currentIndex + 1) % images.length;
       updateSlide();
-    });
+    };
 
-    if (images.length === 1) {
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateSlide();
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', goToNext);
+    }
+
+    if (images.length > 1) {
+      window.setInterval(goToNext, 4000);
+    }
+
+    if (images.length === 1 && prevButton && nextButton) {
       prevButton.disabled = true;
       nextButton.disabled = true;
       prevButton.classList.add('cursor-not-allowed', 'opacity-50');
