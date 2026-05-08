@@ -2,10 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { servicesPageImagePaths } from '../../data/servicesPageImages';
 
+const getServiceImageAlt = (imagePath: string) => {
+  const path = imagePath.toLowerCase();
+
+  if (path.includes('wardrobe')) return 'Armario y espacio de almacenaje en Pensión Agro da Porta';
+  if (path.includes('sink')) return 'Lavabo del baño en Pensión Agro da Porta';
+  if (path.includes('shower')) return 'Ducha del baño privado en Pensión Agro da Porta';
+  if (path.includes('room_tv_airconditioning')) return 'Habitación con Smart TV y control climático en Pensión Agro da Porta';
+  if (path.includes('desk')) return 'Escritorio y zona de apoyo en una habitación de Pensión Agro da Porta';
+
+  return 'Comodidades de Pensión Agro da Porta en Palas de Rei';
+};
+
 const servicesCarouselImagesHtml = servicesPageImagePaths
   .map(
     (imagePath: string) =>
-      `<img src="${imagePath}" alt="Comodidades de Pensión Agro da Porta" class="min-w-full h-full object-cover">`,
+      `<img src="${imagePath}" alt="${getServiceImageAlt(imagePath)}" class="min-w-full h-full object-cover" loading="lazy" decoding="async">`,
   )
   .join('');
 
@@ -17,7 +29,7 @@ const servicesCarouselDotsHtml = servicesPageImagePaths
   .join('');
 ---
 
-<BaseLayout lang="es" title="Servicios" description="Descubre todo lo que ofrecemos en Pensión Agro da Porta para una parada cómoda en el Camino.">
+<BaseLayout lang="es" title="Servicios para peregrinos en Palas de Rei" description="Alojamiento para peregrinos en Palas de Rei con baño privado, Wi-Fi y servicios esenciales para descansar en el Camino de Santiago.">
   <section class="bg-[#8b5a3c] px-4 py-10 text-center sm:px-6 sm:py-14">
     <p class="mb-4 font-lato text-xs uppercase tracking-[0.22em] text-amber-400 sm:tracking-[0.35em]">
       Comodidad En El Camino

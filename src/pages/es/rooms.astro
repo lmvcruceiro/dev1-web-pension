@@ -4,7 +4,7 @@ import { doubleRoomImagePaths } from '../../data/doubleRoomImages';
 import { twinRoomImagePaths } from '../../data/twinRoomImages';
 ---
 
-<BaseLayout lang="es" title="Habitaciones" description="Descubre las habitaciones de Pensión Agro da Porta en el Camino de Santiago">
+<BaseLayout lang="es" title="Habitaciones para peregrinos en Palas de Rei" description="Habitaciones privadas para peregrinos en Palas de Rei, en el Camino de Santiago (Camino Francés), con descanso y comodidad.">
   <section class="bg-[#8b5a3c] px-6 py-12 text-center">
     <p class="mb-4 font-lato text-xs uppercase tracking-[0.4em] text-amber-400">Descansa y Recupérate</p>
     <h1 class="font-playfair text-5xl font-bold text-stone-50 md:text-6xl">Nuestras Habitaciones</h1>
@@ -150,6 +150,27 @@ import { twinRoomImagePaths } from '../../data/twinRoomImages';
   </section>
 
   <script>
+    const getRoomImageAlt = (imagePath: string) => {
+      const path = imagePath.toLowerCase();
+
+      if (path.includes('double_room')) {
+        if (path.includes('shower')) return 'Ducha del baño de la habitación de matrimonio en Pensión Agro da Porta';
+        if (path.includes('sink')) return 'Lavabo del baño de la habitación de matrimonio en Pensión Agro da Porta';
+        if (path.includes('inside_out')) return 'Vista interior de la habitación de matrimonio en Pensión Agro da Porta';
+        return 'Habitación de matrimonio en Pensión Agro da Porta en Palas de Rei';
+      }
+
+      if (path.includes('twin_room')) {
+        if (path.includes('shower')) return 'Ducha del baño de la habitación twin en Pensión Agro da Porta';
+        if (path.includes('sink')) return 'Lavabo del baño de la habitación twin en Pensión Agro da Porta';
+        if (path.includes('inside_out')) return 'Vista interior de la habitación twin en Pensión Agro da Porta';
+        if (path.includes('bathroom')) return 'Baño privado de la habitación twin en Pensión Agro da Porta';
+        return 'Habitación twin en Pensión Agro da Porta en Palas de Rei';
+      }
+
+      return 'Habitación en Pensión Agro da Porta en Palas de Rei';
+    };
+
     const carousels = document.querySelectorAll('[data-room-carousel]');
 
     carousels.forEach((carousel) => {
@@ -168,6 +189,7 @@ import { twinRoomImagePaths } from '../../data/twinRoomImages';
 
       const updateSlide = () => {
         imageElement.src = images[currentIndex];
+        imageElement.alt = getRoomImageAlt(images[currentIndex]);
         indexElement.textContent = String(currentIndex + 1);
       };
 

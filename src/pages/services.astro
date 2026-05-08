@@ -2,10 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { servicesPageImagePaths } from '../data/servicesPageImages';
 
+const getServiceImageAlt = (imagePath: string) => {
+  const path = imagePath.toLowerCase();
+
+  if (path.includes('wardrobe')) return 'Wardrobe and storage space at Pensión Agro da Porta';
+  if (path.includes('sink')) return 'Bathroom sink area at Pensión Agro da Porta';
+  if (path.includes('shower')) return 'Private bathroom shower at Pensión Agro da Porta';
+  if (path.includes('room_tv_airconditioning')) return 'Room with Smart TV and climate control at Pensión Agro da Porta';
+  if (path.includes('desk')) return 'Desk and work area inside a room at Pensión Agro da Porta';
+
+  return 'Amenities at Pensión Agro da Porta in Palas de Rei';
+};
+
 let servicesCarouselImagesHtml = '';
 
 for (const imagePath of servicesPageImagePaths as string[]) {
-  servicesCarouselImagesHtml += `<img src="${imagePath}" alt="Pensión Agro da Porta amenity" class="min-w-full h-full object-cover">`;
+  servicesCarouselImagesHtml += `<img src="${imagePath}" alt="${getServiceImageAlt(imagePath)}" class="min-w-full h-full object-cover" loading="lazy" decoding="async">`;
 }
 
 let servicesCarouselDotsHtml = '';
@@ -15,7 +27,7 @@ for (const [index] of (servicesPageImagePaths as string[]).entries()) {
 }
 ---
 
-<BaseLayout title="Services" description="Discover everything we offer at Pensión Agro da Porta for a comfortable Camino stop.">
+<BaseLayout title="Pilgrim Services in Palas de Rei | Camino de Santiago" description="Accommodation for pilgrims in Palas de Rei with private bathroom, Wi-Fi, bicycle parking, and essential services on the Camino de Santiago.">
   <section class="bg-[#8b5a3c] px-4 py-10 text-center sm:px-6 sm:py-14">
     <p class="mb-4 font-lato text-xs uppercase tracking-[0.22em] text-amber-400 sm:tracking-[0.35em]">
       Camino Comfort
