@@ -23,6 +23,40 @@ const englishPath = pathname.startsWith('/es') ? pathname.slice(3) || '/' : path
 const spanishPath = pathname.startsWith('/es')
   ? (pathname === '/es' ? '/es/' : pathname)
   : (pathname === '/' ? '/es/' : `/es${pathname}`);
+const canonicalPath = pathname === '/es' ? '/es/' : pathname;
+
+const toAbsoluteUrl = (path: string) => new URL(path, Astro.site ?? Astro.url).toString();
+const canonicalUrl = toAbsoluteUrl(canonicalPath);
+const englishAlternateUrl = toAbsoluteUrl(englishPath);
+const spanishAlternateUrl = toAbsoluteUrl(spanishPath);
+const xDefaultUrl = englishAlternateUrl;
+const mapsUrl = 'https://www.google.com/maps/place/Pensi%C3%B3n+Agro+da+Porta/@42.873017,-7.8671399,20z/data=!4m15!1m5!3m4!2zNDLCsDUyJzIyLjkiTiA3wrA1MicwMC41Ilc!8m2!3d42.873017!4d-7.866818!3m8!1s0xd2fd54482ef9e57:0x3496ffaddd4bf814!5m2!4m1!1i2!8m2!3d42.8729849!4d-7.8668177!16s%2Fg%2F11z9rsflnv?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D';
+const lodgingBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  '@id': `${toAbsoluteUrl('/')}#lodging-business`,
+  name: 'Pensión Agro da Porta',
+  description: 'Pensión for pilgrims in Palas de Rei on the Camino de Santiago.',
+  url: toAbsoluteUrl('/'),
+  image: toAbsoluteUrl('/images/pension.webp'),
+  priceRange: '€65-€100',
+  telephone: '+34744251454',
+  email: 'infoagrodaporta@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Rúa Cruceiro 13',
+    addressLocality: 'Palas de Rei',
+    addressRegion: 'Lugo',
+    addressCountry: 'ES',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 42.8729849,
+    longitude: -7.8668177,
+  },
+  hasMap: mapsUrl,
+  sameAs: [],
+};
 
 const uiText = isSpanish
   ? {
@@ -52,7 +86,6 @@ const uiText = isSpanish
       location: 'Rúa Cruceiro 13\nPalas de Rei (Lugo), Spain',
     };
 
-const mapsUrl = 'https://www.google.com/maps/place/Pensi%C3%B3n+Agro+da+Porta/@42.873017,-7.8671399,20z/data=!4m15!1m5!3m4!2zNDLCsDUyJzIyLjkiTiA3wrA1MicwMC41Ilc!8m2!3d42.873017!4d-7.866818!3m8!1s0xd2fd54482ef9e57:0x3496ffaddd4bf814!5m2!4m1!1i2!8m2!3d42.8729849!4d-7.8668177!16s%2Fg%2F11z9rsflnv?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D';
 ---
 
 <!doctype html>
@@ -62,6 +95,11 @@ const mapsUrl = 'https://www.google.com/maps/place/Pensi%C3%B3n+Agro+da+Porta/@4
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title} | Pensión Agro da Porta</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishAlternateUrl} />
+    <link rel="alternate" hreflang="es" href={spanishAlternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(lodgingBusinessSchema)}></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -175,8 +213,16 @@ const mapsUrl = 'https://www.google.com/maps/place/Pensi%C3%B3n+Agro+da+Porta/@4
         </div>
         <div>
           <p class="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-200/80">{uiText.contactLabel}</p>
-          <p>infoagrodaporta@gmail.com</p>
-          <p>+34 744 25 14 54</p>
+          <p>
+            <a href="mailto:infoagrodaporta@gmail.com" class="transition-colors hover:text-amber-200">
+              infoagrodaporta@gmail.com
+            </a>
+          </p>
+          <p>
+            <a href="tel:+34744251454" class="transition-colors hover:text-amber-200">
+              +34 744 25 14 54
+            </a>
+          </p>
         </div>
         {/* Social networks — uncomment when accounts are ready
         <div>
