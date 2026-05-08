@@ -4,7 +4,7 @@ import { doubleRoomImagePaths } from '../data/doubleRoomImages';
 import { twinRoomImagePaths } from '../data/twinRoomImages';
 ---
 
-<BaseLayout title="Our Rooms" description="Discover the rooms at Pensión Agro da Porta on the Camino de Santiago">
+<BaseLayout title="Rooms for Pilgrims in Palas de Rei | Camino Francés" description="Private rooms for pilgrims in Palas de Rei on the Camino Francés, with private bathroom, Wi-Fi, and restful comfort after each stage.">
 
   <!-- PAGE HEADER -->
   <section class="bg-[#8b5a3c] py-12 px-6 text-center">
@@ -161,6 +161,27 @@ import { twinRoomImagePaths } from '../data/twinRoomImages';
   </section>
 
   <script>
+    const getRoomImageAlt = (imagePath: string) => {
+      const path = imagePath.toLowerCase();
+
+      if (path.includes('double_room')) {
+        if (path.includes('shower')) return 'Shower in the double room bathroom at Pensión Agro da Porta';
+        if (path.includes('sink')) return 'Bathroom sink in the double room at Pensión Agro da Porta';
+        if (path.includes('inside_out')) return 'Interior perspective of the double room at Pensión Agro da Porta';
+        return 'Double room at Pensión Agro da Porta in Palas de Rei';
+      }
+
+      if (path.includes('twin_room')) {
+        if (path.includes('shower')) return 'Shower in the twin room bathroom at Pensión Agro da Porta';
+        if (path.includes('sink')) return 'Bathroom sink in the twin room at Pensión Agro da Porta';
+        if (path.includes('inside_out')) return 'Interior perspective of the twin room at Pensión Agro da Porta';
+        if (path.includes('bathroom')) return 'Private bathroom in the twin room at Pensión Agro da Porta';
+        return 'Twin room at Pensión Agro da Porta in Palas de Rei';
+      }
+
+      return 'Room at Pensión Agro da Porta in Palas de Rei';
+    };
+
     const carousels = document.querySelectorAll('[data-room-carousel]');
 
     carousels.forEach((carousel) => {
@@ -179,6 +200,7 @@ import { twinRoomImagePaths } from '../data/twinRoomImages';
 
       const updateSlide = () => {
         imageElement.src = images[currentIndex];
+        imageElement.alt = getRoomImageAlt(images[currentIndex]);
         indexElement.textContent = String(currentIndex + 1);
       };
 

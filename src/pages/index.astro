@@ -3,15 +3,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { mainPageImagePaths } from '../data/mainPageImages';
 ---
 
-<BaseLayout title="Home" description="Agro da Porta - A warm and welcoming guesthouse on the Camino de Santiago">
+<BaseLayout title="Pensión in Palas de Rei | Camino Francés Accommodation" description="Accommodation for pilgrims in Palas de Rei on the Camino de Santiago, with comfortable rooms, warm hospitality, and direct booking.">
 
   <!-- HERO SECTION -->
   <section class="relative flex min-h-[82svh] items-center justify-center overflow-hidden bg-[#8b5a3c] md:min-h-[90vh]">
-    <!-- Background image -->
-    <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style="background-image: url('/images/caminho.webp');"
-    ></div>
+    <!-- LCP image: eager loading for better first paint and image discoverability -->
+    <img
+      src="/images/caminho.webp"
+      alt="Pilgrims route near Palas de Rei on the Camino de Santiago"
+      class="absolute inset-0 h-full w-full object-cover"
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
 
     <!-- Dark overlay for text contrast -->
     <div class="absolute inset-0 bg-gradient-to-br from-stone-950/35 via-stone-900/22 to-amber-950/30"></div>
@@ -71,7 +77,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
         >
           <img
             src={mainPageImagePaths[0]}
-            alt="Pensión Agro da Porta gallery image"
+            alt="Exterior view of Pensión Agro da Porta in Palas de Rei"
             class="h-full min-h-[380px] w-full object-cover sm:min-h-[480px]"
             data-carousel-image
             loading="lazy"
@@ -181,14 +187,28 @@ import { mainPageImagePaths } from '../data/mainPageImages';
 </BaseLayout>
 
 <script>
+  const getMainImageAlt = (imagePath: string) => {
+    const path = imagePath.toLowerCase();
+
+    if (path.includes('building')) return 'Exterior view of Pensión Agro da Porta in Palas de Rei';
+    if (path.includes('garden')) return 'Garden area at Pensión Agro da Porta for pilgrims';
+    if (path.includes('double_bed')) return 'Double bed room at Pensión Agro da Porta';
+    if (path.includes('twin_bed')) return 'Twin bed room at Pensión Agro da Porta';
+    if (path.includes('washer') || path.includes('sink')) return 'Bathroom sink area at Pensión Agro da Porta';
+    if (path.includes('shower') || path.includes('bathroom')) return 'Private bathroom shower at Pensión Agro da Porta';
+
+    return 'Pensión Agro da Porta in Palas de Rei on the Camino de Santiago';
+  };
+
   const carousels = document.querySelectorAll('[data-main-page-carousel]');
 
   carousels.forEach((carousel) => {
     const rawImages = carousel.getAttribute('data-images') || '[]';
-    let images = [];
+    let images: string[] = [];
 
     try {
-      images = JSON.parse(rawImages);
+      const parsedImages = JSON.parse(rawImages);
+      images = Array.isArray(parsedImages) ? parsedImages : [];
     } catch {
       images = [];
     }
@@ -206,6 +226,7 @@ import { mainPageImagePaths } from '../data/mainPageImages';
 
     const updateSlide = () => {
       imageElement.src = images[currentIndex];
+      imageElement.alt = getMainImageAlt(images[currentIndex]);
       if (indexElement instanceof HTMLElement) {
         indexElement.textContent = String(currentIndex + 1);
       }
