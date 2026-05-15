@@ -14,6 +14,11 @@ const defaultDescription = lang === 'es'
   : 'Accommodation for pilgrims in Palas de Rei on the Camino de Santiago (Camino Francés).';
 const metaTitle = title ?? defaultTitle;
 const metaDescription = description ?? defaultDescription;
+const brandName = 'Pensión Agro da Porta';
+const normalizedMetaTitle = metaTitle.trim();
+const pageTitle = normalizedMetaTitle.toLowerCase().includes(brandName.toLowerCase())
+  ? normalizedMetaTitle
+  : `${normalizedMetaTitle} | ${brandName}`;
 
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 const isSpanish = lang === 'es';
@@ -39,19 +44,32 @@ const canonicalUrl = toAbsoluteUrl(canonicalPath);
 const englishAlternateUrl = toAbsoluteUrl(englishPath);
 const spanishAlternateUrl = toAbsoluteUrl(spanishPath);
 const xDefaultUrl = englishAlternateUrl;
+const websiteUrl = toAbsoluteUrl('/');
 const socialImageUrl = toAbsoluteUrl('/images/pension.webp');
+const socialImageAlt = isSpanish
+  ? 'Vista de Pensión Agro da Porta en Palas de Rei, Camino Francés'
+  : 'View of Pensión Agro da Porta in Palas de Rei on Camino Francés';
 const ogLocale = isSpanish ? 'es_ES' : 'en_US';
 const ogLocaleAlternate = isSpanish ? 'en_US' : 'es_ES';
 const mapsUrl = 'https://www.google.com/maps/place/Pensi%C3%B3n+Agro+da+Porta/@42.873017,-7.8671399,20z/data=!4m15!1m5!3m4!2zNDLCsDUyJzIyLjkiTiA3wrA1MicwMC41Ilc!8m2!3d42.873017!4d-7.866818!3m8!1s0xd2fd54482ef9e57:0x3496ffaddd4bf814!5m2!4m1!1i2!8m2!3d42.8729849!4d-7.8668177!16s%2Fg%2F11z9rsflnv?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D';
 const whatsappUrl = 'https://wa.me/34744251454';
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${websiteUrl}#website`,
+  url: websiteUrl,
+  name: brandName,
+  inLanguage: ['en', 'es'],
+};
 const lodgingBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
-  '@id': `${toAbsoluteUrl('/')}#lodging-business`,
-  name: 'Pensión Agro da Porta',
+  '@id': `${websiteUrl}#lodging-business`,
+  name: brandName,
   description: 'Pensión for pilgrims in Palas de Rei on the Camino de Santiago.',
-  url: toAbsoluteUrl('/'),
+  url: websiteUrl,
   image: toAbsoluteUrl('/images/pension.webp'),
+  logo: toAbsoluteUrl('/favicon.svg'),
   priceRange: '€65-€100',
   telephone: '+34744251454',
   email: 'infoagrodaporta@gmail.com',
@@ -60,6 +78,7 @@ const lodgingBusinessSchema = {
     streetAddress: 'Rúa Cruceiro 13',
     addressLocality: 'Palas de Rei',
     addressRegion: 'Lugo',
+    postalCode: '27200',
     addressCountry: 'ES',
   },
   geo: {
@@ -68,8 +87,14 @@ const lodgingBusinessSchema = {
     longitude: -7.8668177,
   },
   hasMap: mapsUrl,
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Palas de Rei, Lugo, Galicia, Spain',
+  },
+  inLanguage: ['en', 'es'],
   sameAs: [],
 };
+const structuredData = [websiteSchema, lodgingBusinessSchema];
 
 const uiText = isSpanish
   ? {
@@ -111,27 +136,31 @@ const uiText = isSpanish
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={metaDescription} />
-    <title>{metaTitle} | Pensión Agro da Porta</title>
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="theme-color" content="#8b5a3c" />
+    <title>{pageTitle}</title>
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Pensión Agro da Porta" />
-    <meta property="og:title" content={`${metaTitle} | Pensión Agro da Porta`} />
+    <meta property="og:site_name" content={brandName} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={socialImageAlt} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={ogLocaleAlternate} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${metaTitle} | Pensión Agro da Porta`} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="en" href={englishAlternateUrl} />
     <link rel="alternate" hreflang="es" href={spanishAlternateUrl} />
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
-    <script type="application/ld+json" set:html={JSON.stringify(lodgingBusinessSchema)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
