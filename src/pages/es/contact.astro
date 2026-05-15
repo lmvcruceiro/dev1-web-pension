@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const formEndpoint = 'https://formsubmit.co/ajax/infoagrodaporta@gmail.com';
+const whatsappUrl = 'https://wa.me/34744251454';
 ---
 
 <BaseLayout lang="es" title="Contacto Pensión en Palas de Rei" description="Contacta con nuestro alojamiento para peregrinos en Palas de Rei, en el Camino de Santiago, para disponibilidad y reservas directas.">
@@ -29,25 +30,41 @@ const formEndpoint = 'https://formsubmit.co/ajax/infoagrodaporta@gmail.com';
         <div class="mt-8 space-y-5">
           <div class="border-l-4 border-amber-400 bg-amber-50 px-4 py-3">
             <p class="font-lato text-xs uppercase tracking-[0.14em] text-stone-500">Correo</p>
-            <a href="mailto:infoagrodaporta@gmail.com" class="mt-1 inline-block font-lato text-base text-stone-800 transition-colors hover:text-amber-700">
-              infoagrodaporta@gmail.com
+            <a href="mailto:infoagrodaporta@gmail.com" class="mt-1 inline-flex items-center gap-2 font-lato text-base text-stone-800 transition-colors hover:text-amber-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M2.94 5.5A2 2 0 014.86 4h10.28a2 2 0 011.92 1.5L10 9.88 2.94 5.5z"/>
+                <path d="M2.5 7.14V14a2 2 0 002 2h11a2 2 0 002-2V7.14l-6.94 4.31a1 1 0 01-1.06 0L2.5 7.14z"/>
+              </svg>
+              <span>infoagrodaporta@gmail.com</span>
             </a>
           </div>
 
           <div class="border-l-4 border-amber-400 bg-amber-50 px-4 py-3">
-            <p class="font-lato text-xs uppercase tracking-[0.14em] text-stone-500">Teléfono / WhatsApp</p>
-            <a href="tel:+34744251454" class="mt-1 inline-block font-lato text-base text-stone-800 transition-colors hover:text-amber-700">
-              +34 744 25 14 54
+            <p class="font-lato text-xs uppercase tracking-[0.14em] text-stone-500">Teléfono</p>
+            <a href="tel:+34744251454" class="mt-1 inline-flex items-center gap-2 font-lato text-base text-stone-800 transition-colors hover:text-amber-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M2.7 3.7a1 1 0 011-.7h2.1a1 1 0 01.97.76l.54 2.17a1 1 0 01-.29.98L6.24 8.7a11.05 11.05 0 005.06 5.06l1.76-1.76a1 1 0 01.98-.29l2.17.54a1 1 0 01.76.97v2.1a1 1 0 01-.7 1 4 4 0 01-1.28.18C8.72 16.5 3.5 11.28 3.5 4.98c0-.44.06-.87.2-1.28z"/>
+              </svg>
+              <span>+34 744 25 14 54</span>
             </a>
           </div>
 
           <div class="border-l-4 border-amber-400 bg-amber-50 px-4 py-3">
-            <p class="font-lato text-xs uppercase tracking-[0.14em] text-stone-500">Ubicación</p>
-            <p class="mt-1 font-lato text-base leading-relaxed text-stone-800">
-              <span class="block">Rúa Cruceiro 13</span>
-              <span class="block">Palas de Rei (Lugo), Spain</span>
-            </p>
+            <p class="font-lato text-xs uppercase tracking-[0.14em] text-stone-500">WhatsApp</p>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir chat por WhatsApp"
+              class="mt-1 flex w-fit items-center gap-2 font-lato text-base text-stone-800 transition-colors hover:text-amber-700"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
+                <path d="M12 2a10 10 0 00-8.7 14.93L2 22l5.22-1.27A10 10 0 1012 2zm0 18a8 8 0 01-4.07-1.11l-.29-.17-3.1.75.83-3.02-.19-.31A8 8 0 1112 20zm4.39-5.61c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.11.15 1.53.09.47-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/>
+              </svg>
+              Abrir WhatsApp
+            </a>
           </div>
+
         </div>
 
         <div class="mt-8 border border-stone-200 p-4">
